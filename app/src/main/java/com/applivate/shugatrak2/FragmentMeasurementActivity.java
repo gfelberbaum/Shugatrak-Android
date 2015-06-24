@@ -326,7 +326,7 @@ public class FragmentMeasurementActivity extends Fragment {
                     Logging.Verbose("FragmentMeasurementActivity", "Diff " + diff + " current " + GLOBAL_TOUCH_CURRENT_POSITION_Y + " prev " + GLOBAL_TOUCH_POSITION_Y);
 
                     if (BleService.connected && !hasAlreadyActivated) {
-                        if (diff <= 600) {          //GET ONE READING
+                        if (diff < -600) {          //GET ONE READING
                             hasAlreadyActivated = true;
 
                             Intent intent = new Intent(getActivity().getApplicationContext(), BaseService.class);

@@ -1,0 +1,700 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.6" icons="true" always-add-relationships="true" generalizations="true" realizations="true" 
+  associations="true" dependencies="true" nesting-relationships="true">  
+  <class id="1" language="java" name="com.applivate.shugatrakii.BaseMeter" project="ShugaTrak" 
+    file="/ShugaTrak/src/com/applivate/shugatrakii/BaseMeter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="387" width="246" x="741" y="711"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="com.applivate.shugatrakii.BaseService" project="ShugaTrak" 
+    file="/ShugaTrak/src/com/applivate/shugatrakii/BaseService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="333" width="182" x="1261" y="2316"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="com.applivate.shugatrakii.BaseService.createJSON" project="ShugaTrak" 
+    file="/ShugaTrak/src/com/applivate/shugatrakii/BaseService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="245" x="1301" y="2689"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="com.applivate.shugatrakii.BleService" project="ShugaTrak" 
+    file="/ShugaTrak/src/com/applivate/shugatrakii/BleService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="801" width="365" x="601" y="1475"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="com.applivate.shugatrakii.BleService.LocalBinder" project="ShugaTrak" 
+    file="/ShugaTrak/src/com/applivate/shugatrakii/BleService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="141" x="580" y="2316"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="com.applivate.shugatrakii.DataSaver" project="ShugaTrak" 
+    file="/ShugaTrak/src/com/applivate/shugatrakii/DataSaver.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="369" width="205" x="1098" y="4276"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="com.applivate.shugatrakii.FragmentMeasurementActivity" project="ShugaTrak" 
+    file="/ShugaTrak/src/com/applivate/shugatrakii/FragmentMeasurementActivity.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="297" width="293" x="1069" y="1138"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="com.applivate.shugatrakii.FragmentSettingsActivity.I" project="ShugaTrak" 
+    file="/ShugaTrak/src/com/applivate/shugatrakii/FragmentSettingsActivity.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="253" x="1564" y="1138"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="com.applivate.shugatrakii.FragmentSettingsActivity" project="ShugaTrak" 
+    file="/ShugaTrak/src/com/applivate/shugatrakii/FragmentSettingsActivity.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="243" width="293" x="1564" y="711"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="com.applivate.shugatrakii.FragmentWebActivity" project="ShugaTrak" 
+    file="/ShugaTrak/src/com/applivate/shugatrakii/FragmentWebActivity.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1474" y="3652"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="com.applivate.shugatrakii.FragmentWebActivity.N" project="ShugaTrak" 
+    file="/ShugaTrak/src/com/applivate/shugatrakii/FragmentWebActivity.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="110" x="1364" y="4119"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="com.applivate.shugatrakii.FreeStyle" project="ShugaTrak" 
+    file="/ShugaTrak/src/com/applivate/shugatrakii/FreeStyle.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="315" width="188" x="803" y="2689"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="com.applivate.shugatrakii.InternetPayload" project="ShugaTrak" 
+    file="/ShugaTrak/src/com/applivate/shugatrakii/InternetPayload.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="153" width="266" x="1973" y="4276"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="com.applivate.shugatrakii.InternetSyncing.TestPasswordTask" project="ShugaTrak" 
+    file="/ShugaTrak/src/com/applivate/shugatrakii/InternetSyncing.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="223" x="1995" y="4119"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="com.applivate.shugatrakii.InternetSyncing" project="ShugaTrak" 
+    file="/ShugaTrak/src/com/applivate/shugatrakii/InternetSyncing.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="531" width="266" x="1697" y="3548"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="com.applivate.shugatrakii.InternetSyncing.SyncDataTask" project="ShugaTrak" 
+    file="/ShugaTrak/src/com/applivate/shugatrakii/InternetSyncing.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="216" x="1718" y="4119"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="17" language="java" name="com.applivate.shugatrakii.MeterInterface" project="ShugaTrak" 
+    file="/ShugaTrak/src/com/applivate/shugatrakii/MeterInterface.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="188" x="1052" y="3548"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="18" language="java" name="com.applivate.shugatrakii.Reading" project="ShugaTrak" 
+    file="/ShugaTrak/src/com/applivate/shugatrakii/Reading.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="171" width="208" x="1707" y="4685"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="com.applivate.shugatrakii.SearchActivity.DeListAdapter" project="ShugaTrak" 
+    file="/ShugaTrak/src/com/applivate/shugatrakii/SearchActivity.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="279" width="222" x="41" y="711"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="com.applivate.shugatrakii.SearchActivity.postrun" project="ShugaTrak" 
+    file="/ShugaTrak/src/com/applivate/shugatrakii/SearchActivity.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="110" x="345" y="711"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="21" language="java" name="com.applivate.shugatrakii.SearchActivity.vH" project="ShugaTrak" 
+    file="/ShugaTrak/src/com/applivate/shugatrakii/SearchActivity.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="139" x="145" y="1138"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="com.applivate.shugatrakii.SearchActivity" project="ShugaTrak" 
+    file="/ShugaTrak/src/com/applivate/shugatrakii/SearchActivity.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="351" width="234" x="345" y="320"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="23" language="java" name="com.applivate.shugatrakii.SystemReciever" project="ShugaTrak" 
+    file="/ShugaTrak/src/com/applivate/shugatrakii/SystemReciever.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="174" x="345" y="1138"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="24" language="java" name="com.applivate.shugatrakii.TopLevelActivity.SectionsPagerAdapter" 
+    project="ShugaTrak" file="/ShugaTrak/src/com/applivate/shugatrakii/TopLevelActivity.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="117" width="230" x="1486" y="320"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="25" language="java" name="com.applivate.shugatrakii.TopLevelActivity" project="ShugaTrak" 
+    file="/ShugaTrak/src/com/applivate/shugatrakii/TopLevelActivity.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="243" width="148" x="1486" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="26" language="java" name="com.applivate.shugatrakii.Ultra2" project="ShugaTrak" 
+    file="/ShugaTrak/src/com/applivate/shugatrakii/Ultra2.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="351" width="188" x="1031" y="2689"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="27" language="java" name="com.applivate.shugatrakii.UltraMini.tmoTimer" project="ShugaTrak" 
+    file="/ShugaTrak/src/com/applivate/shugatrakii/UltraMini.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="110" x="2003" y="3548"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="28" language="java" name="com.applivate.shugatrakii.UltraMini" project="ShugaTrak" 
+    file="/ShugaTrak/src/com/applivate/shugatrakii/UltraMini.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="819" width="208" x="1607" y="2689"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <dependency id="29">    
+    <bendpoint x="570" y="711"/>    
+    <bendpoint x="570" y="1138"/>    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="30">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="10"/>  
+  </dependency>  
+  <dependency id="31">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="9"/>  
+  </dependency>  
+  <dependency id="32">    
+    <bendpoint x="1249" y="2689"/>    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="17"/>  
+  </dependency>  
+  <generalization id="33">    
+    <bendpoint x="1473" y="2316"/>    
+    <bendpoint x="1434" y="1475"/>    
+    <bendpoint x="1413" y="1138"/>    
+    <end type="SOURCE" refId="28"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <dependency id="34">    
+    <bendpoint x="751" y="2316"/>    
+    <bendpoint x="751" y="2689"/>    
+    <bendpoint x="751" y="3548"/>    
+    <bendpoint x="751" y="4119"/>    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <nesting id="35">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="11"/>  
+  </nesting>  
+  <nesting id="36">    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="24"/>  
+  </nesting>  
+  <dependency id="37">    
+    <bendpoint x="1528" y="3410"/>    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="15"/>  
+  </dependency>  
+  <dependency id="38">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="13"/>  
+  </dependency>  
+  <dependency id="39">    
+    <bendpoint x="1746" y="320"/>    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="9"/>  
+  </dependency>  
+  <dependency id="40">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="21"/>  
+  </dependency>  
+  <nesting id="41">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="20"/>  
+  </nesting>  
+  <nesting id="42">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="14"/>  
+  </nesting>  
+  <association id="43">    
+    <bendpoint x="1270" y="2689"/>    
+    <bendpoint x="1270" y="3548"/>    
+    <bendpoint x="1270" y="4119"/>    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="44" name="saves"/>      
+      <multiplicity id="45" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="46">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="9"/>  
+  </dependency>  
+  <dependency id="47">    
+    <bendpoint x="1017" y="320"/>    
+    <bendpoint x="1017" y="711"/>    
+    <bendpoint x="1017" y="1138"/>    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="48">    
+    <bendpoint x="1392" y="320"/>    
+    <bendpoint x="1392" y="711"/>    
+    <bendpoint x="1379" y="1447"/>    
+    <bendpoint x="1195" y="1475"/>    
+    <bendpoint x="1019" y="2316"/>    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <dependency id="49">    
+    <bendpoint x="1976" y="4232"/>    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="13"/>  
+  </dependency>  
+  <dependency id="50">    
+    <bendpoint x="1973" y="2662"/>    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="15"/>  
+  </dependency>  
+  <dependency id="51">    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="22"/>  
+  </dependency>  
+  <dependency id="52">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="10"/>  
+  </dependency>  
+  <dependency id="53">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="22"/>  
+  </dependency>  
+  <dependency id="54">    
+    <bendpoint x="528" y="1475"/>    
+    <bendpoint x="528" y="2316"/>    
+    <bendpoint x="528" y="2689"/>    
+    <bendpoint x="528" y="3548"/>    
+    <bendpoint x="528" y="4119"/>    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <association id="55">    
+    <end type="SOURCE" refId="22" navigable="false">      
+      <attribute id="56" name="DA"/>      
+      <multiplicity id="57" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="58">    
+    <bendpoint x="1216" y="1475"/>    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <nesting id="59">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="3"/>  
+  </nesting>  
+  <dependency id="60">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <association id="61">    
+    <bendpoint x="1866" y="1138"/>    
+    <bendpoint x="1866" y="1475"/>    
+    <bendpoint x="1866" y="2316"/>    
+    <bendpoint x="1827" y="3523"/>    
+    <bendpoint x="1666" y="3548"/>    
+    <bendpoint x="1666" y="4119"/>    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="62" name="data"/>      
+      <multiplicity id="63" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="64">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="17"/>  
+  </realization>  
+  <dependency id="65">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="66">    
+    <bendpoint x="1887" y="320"/>    
+    <bendpoint x="1887" y="711"/>    
+    <bendpoint x="1887" y="1138"/>    
+    <bendpoint x="1845" y="1475"/>    
+    <bendpoint x="1824" y="2316"/>    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="28"/>  
+  </dependency>  
+  <realization id="67">    
+    <end type="SOURCE" refId="28"/>    
+    <end type="TARGET" refId="17"/>  
+  </realization>  
+  <dependency id="68">    
+    <bendpoint x="2269" y="4119"/>    
+    <bendpoint x="2251" y="4472"/>    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="18"/>  
+  </dependency>  
+  <dependency id="69">    
+    <bendpoint x="1291" y="3548"/>    
+    <bendpoint x="1291" y="4119"/>    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <association id="70">    
+    <bendpoint x="1687" y="4119"/>    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="71" name="data"/>      
+      <multiplicity id="72" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="73">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="16"/>  
+  </nesting>  
+  <dependency id="74">    
+    <bendpoint x="1006" y="2699"/>    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <dependency id="75">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <association id="76">    
+    <bendpoint x="1017" y="1475"/>    
+    <bendpoint x="1011" y="2319"/>    
+    <bendpoint x="772" y="2689"/>    
+    <bendpoint x="772" y="3548"/>    
+    <bendpoint x="772" y="4119"/>    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="77" name="datas"/>      
+      <multiplicity id="78" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="79">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="1"/>  
+  </dependency>  
+  <dependency id="80">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <association id="81">    
+    <bendpoint x="2143" y="320"/>    
+    <bendpoint x="2143" y="711"/>    
+    <bendpoint x="2143" y="1138"/>    
+    <bendpoint x="2143" y="1475"/>    
+    <bendpoint x="2143" y="2316"/>    
+    <bendpoint x="2143" y="2689"/>    
+    <bendpoint x="2143" y="3548"/>    
+    <bendpoint x="1957" y="4239"/>    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="82" name="datas"/>      
+      <multiplicity id="83" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="84">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="26"/>  
+  </dependency>  
+  <association id="85">    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="86" name="mSectionsPagerAdapter"/>      
+      <multiplicity id="87" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="88">    
+    <bendpoint x="1455" y="1475"/>    
+    <bendpoint x="1455" y="1138"/>    
+    <bendpoint x="1455" y="711"/>    
+    <bendpoint x="1455" y="320"/>    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="25"/>  
+  </dependency>  
+  <dependency id="89">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="13"/>  
+  </dependency>  
+  <association id="90">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="91" name="readings"/>      
+      <multiplicity id="92" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="93">    
+    <end type="SOURCE" refId="22" navigable="false">      
+      <attribute id="94" name="run"/>      
+      <multiplicity id="95" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="96">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="19"/>  
+  </nesting>  
+  <dependency id="97">    
+    <bendpoint x="591" y="1138"/>    
+    <bendpoint x="583" y="2262"/>    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <dependency id="98">    
+    <bendpoint x="1586" y="2711"/>    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="28"/>  
+  </dependency>  
+  <generalization id="99">    
+    <bendpoint x="996" y="2316"/>    
+    <bendpoint x="996" y="1475"/>    
+    <bendpoint x="996" y="1138"/>    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <dependency id="100">    
+    <bendpoint x="1312" y="3548"/>    
+    <bendpoint x="1333" y="4119"/>    
+    <bendpoint x="1333" y="4276"/>    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="18"/>  
+  </dependency>  
+  <nesting id="101">    
+    <bendpoint x="293" y="711"/>    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="21"/>  
+  </nesting>  
+  <nesting id="102">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="5"/>  
+  </nesting>  
+  <association id="103">    
+    <bendpoint x="549" y="1138"/>    
+    <bendpoint x="549" y="1475"/>    
+    <bendpoint x="549" y="2316"/>    
+    <bendpoint x="549" y="2689"/>    
+    <bendpoint x="549" y="3548"/>    
+    <bendpoint x="549" y="4119"/>    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="104" name="data"/>      
+      <multiplicity id="105" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="106">    
+    <bendpoint x="1040" y="2316"/>    
+    <bendpoint x="1039" y="1475"/>    
+    <bendpoint x="1038" y="1138"/>    
+    <end type="SOURCE" refId="26"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <nesting id="107">    
+    <end type="SOURCE" refId="28"/>    
+    <end type="TARGET" refId="27"/>  
+  </nesting>  
+  <dependency id="108">    
+    <bendpoint x="1908" y="320"/>    
+    <bendpoint x="1908" y="711"/>    
+    <bendpoint x="1908" y="1138"/>    
+    <bendpoint x="1908" y="1475"/>    
+    <bendpoint x="1908" y="2316"/>    
+    <bendpoint x="1908" y="2689"/>    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="15"/>  
+  </dependency>  
+  <dependency id="109">    
+    <bendpoint x="314" y="711"/>    
+    <bendpoint x="314" y="1138"/>    
+    <bendpoint x="314" y="1475"/>    
+    <bendpoint x="314" y="2316"/>    
+    <bendpoint x="314" y="2689"/>    
+    <bendpoint x="314" y="3548"/>    
+    <bendpoint x="314" y="4119"/>    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <association id="110">    
+    <bendpoint x="1312" y="4119"/>    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="111" name="data"/>      
+      <multiplicity id="112" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="113">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <nesting id="114">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="8"/>  
+  </nesting>  
+  <dependency id="115">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="10"/>  
+  </dependency>  
+  <dependency id="116">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="22"/>  
+  </dependency>  
+  <realization id="117">    
+    <end type="SOURCE" refId="26"/>    
+    <end type="TARGET" refId="17"/>  
+  </realization>  
+  <dependency id="118">    
+    <bendpoint x="1434" y="320"/>    
+    <bendpoint x="1434" y="711"/>    
+    <bendpoint x="1434" y="1138"/>    
+    <bendpoint x="1347" y="1505"/>    
+    <bendpoint x="1230" y="2316"/>    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="26"/>  
+  </dependency>  
+  <dependency id="119">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="18"/>  
+  </dependency>  
+  <association id="120">    
+    <bendpoint x="680" y="1138"/>    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="121" name="BleS"/>      
+      <multiplicity id="122" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="123">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

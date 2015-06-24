@@ -1,0 +1,371 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#31789d"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context="${packageName}.${activityClass}">
+
+    <!--  -->
+
+
+    <RelativeLayout
+        android:id="@+id/passwordContainer"
+        android:layout_width="fill_parent"
+        android:layout_height="90dp"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentTop="true"
+        android:layout_alignWithParentIfMissing="false"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/takenPass"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignStart="@+id/takenUser"
+            android:layout_gravity="center"
+            android:background="#bdd3e4"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="@string/pass"
+            android:inputType="textPassword"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:textColor="#11577b" />
+
+        <EditText
+            android:id="@+id/takenUser"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:background="#bdd3e4"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="@string/user"
+            android:inputType="textEmailAddress"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:textColor="#11577b">
+
+            <requestFocus />
+        </EditText>
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/cnmtButton"
+        android:layout_width="240dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/verifyButton"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="85dp"
+        android:background="#11577b"
+        android:onClick="cmnt"
+        android:text="@string/changeButton"
+        android:textColor="#ffffff"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/stmtButton"
+        android:layout_width="240dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/cnmtButton"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:background="#11577b"
+        android:onClick="setupMeter"
+        android:text="@string/setupButton"
+        android:textColor="#ffffff"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/verifyButton"
+        android:layout_width="240dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/passwordContainer"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:background="#11577b"
+        android:onClick="verify"
+        android:text="@string/verifyButtonDescription"
+        android:textColor="#ffffff"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/MeterType"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/verifyButton"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:textColor="#ffffff"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/adapterSelected"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/MeterType"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/AboutButton"
+        android:layout_width="240dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/stmtButton"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:background="#11577b"
+        android:onClick="About"
+        android:text="@string/AboutButtonDescription"
+        android:textColor="#ffffff"
+        android:textSize="18sp" />
+    <!--
+       <RelativeLayout
+           android:orientation="vertical"
+           android:layout_width="fill_parent"
+           android:layout_height="100dp"
+           android:layout_alignParentBottom="true"
+           android:layout_alignParentLeft="true"
+           android:layout_alignParentStart="true">
+
+           <TextView
+               android:id="@+id/textView5"
+               android:layout_width="fill_parent"
+               android:layout_height="wrap_content"
+               android:gravity="center|bottom"
+               android:text="www.shugatrak.com"
+               android:textSize="20sp"
+               android:textStyle="bold"
+               android:textColor="#ffffff"
+               android:layout_centerHorizontal="true"
+               android:layout_alignParentLeft="true"
+               android:layout_alignParentTop="true" />
+
+           <TextView
+               android:id="@+id/textView4"
+               android:layout_width="fill_parent"
+               android:layout_height="wrap_content"
+               android:text="Version:asthetic only"
+               android:textSize="12sp"
+               android:textColor="#ffffff"
+               android:layout_below="@+id/textView5"
+               android:gravity="center"/>
+
+           <TextView
+               android:id="@+id/textView6"
+               android:layout_width="fill_parent"
+               android:layout_height="wrap_content"
+               android:text="build ?"
+               android:textSize="12sp"
+               android:textColor="#ffffff"
+               android:layout_below="@+id/textView4"
+               android:gravity="center" />
+
+           <TextView
+               android:id="@+id/textView7"
+               android:layout_width="fill_parent"
+               android:layout_height="wrap_content"
+               android:text="\u00a9 Applivate, LLC"
+               android:textSize="12sp"
+               android:textColor="#ffffff"
+               android:layout_below="@+id/textView6"
+               android:gravity="center" />
+       </RelativeLayout>
+
+   </RelativeLayout>
+   -->
+
+    <!--
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/LinearLayout1"
+        style="@style/MyStyle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:context="${packageName}.${activityClass}" >
+
+        <-
+        ->
+
+        <ImageView
+            android:id="@+id/textView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:contentDescription="@string/Shuga"
+            android:gravity="center_horizontal"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ic_logo_no_background" />
+        ->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_weight=".3"
+            android:gravity="center" >
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="80sp"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="@string/user" />
+
+            <- android:background="@drawable/selecttextview" ->
+
+            <EditText
+                android:id="@+id/takenUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="@string/user"
+                android:imeOptions="actionDone"
+                android:inputType="textEmailAddress"
+                android:paddingBottom="8dp"
+                android:paddingTop="8dp" >
+
+                <requestFocus />
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".3"
+            android:gravity="center" >
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="80sp"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="@string/pass" />
+
+            <- android:background="@drawable/selecttextview" ->
+
+            <EditText
+                android:id="@+id/takenPass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="@string/pass"
+                android:inputType="textPassword"
+                android:paddingBottom="8dp"
+                android:paddingTop="8dp" />
+        </LinearLayout>
+
+        <- android:background="@drawable/blue_background" ->
+
+        <TextView
+            android:id="@+id/verifyButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8sp"
+            android:layout_marginTop="16sp"
+            android:background="@drawable/select_button"
+            android:clickable="true"
+            android:onClick="verify"
+            android:padding="8dp"
+            android:text="@string/verifyButtonDescription"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/MeterTypes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".2"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/adapterSelected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8sp"
+            android:layout_weight="1.3"
+            android:gravity="center" >
+
+            <- android:background="@drawable/blue_background" ->
+
+            <TextView
+                android:id="@+id/cnmtButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/select_button"
+                android:clickable="true"
+                android:onClick="cmnt"
+                android:padding="8dp"
+                android:text="@string/changeButton"
+                android:textColor="@android:color/white"
+                android:textSize="20sp" />
+
+            <- android:background="@drawable/blue_background" ->
+
+            <TextView
+                android:id="@+id/stmtButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/select_button"
+                android:clickable="true"
+                android:onClick="setupMeter"
+                android:padding="8dp"
+                android:text="@string/setupButton"
+                android:textColor="@android:color/white"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/aboutButton"
+            android:layout_width="wrap_content"
+            android:layout_height="34dp"
+            android:layout_gravity="center|top"
+            android:layout_marginBottom="8sp"
+            android:layout_marginTop="14sp"
+            android:background="@drawable/select_button"
+            android:clickable="true"
+            android:onClick="About"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="4dp"
+            android:text="@string/AboutButtonDescription"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+
+
+
+    </LinearLayout>
+    -->
+
+
+</RelativeLayout>

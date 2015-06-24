@@ -1,0 +1,245 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_fragment_measurement"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    style="@style/MyStyle"
+    tools:context="${packageName}.${activityClass}"
+    android:background="#31789d">
+
+    <!--  -->
+
+
+    <!--  -->
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo_readings"
+        android:id="@+id/imageView"
+        android:alpha=".4"
+        android:contentDescription="@string/app_name"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/textView2"
+        android:layout_above="@+id/indicate_transferring_readings"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="64dp"
+        android:layout_marginBottom="89dp" />
+
+    <TextView
+        android:id="@+id/Level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="0dp"
+        android:gravity="bottom|end"
+        android:paddingBottom="0dp"
+        android:textSize="80sp"
+        android:textColor="#ffffff"
+        android:typeface="sans"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="gravity"
+        android:layout_marginStart="0dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="98dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="bottom|start"
+        android:paddingTop="0dp"
+        android:text="@string/MeasureType"
+        android:textSize="23sp"
+        android:textAlignment="gravity"
+        android:layout_gravity="end"
+        android:textColor="#ffffff"
+        android:layout_alignBaseline="@+id/Level"
+        android:layout_alignBottom="@+id/Level"
+        android:layout_toEndOf="@+id/Level" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Level"
+        android:layout_alignParentStart="false"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="false">
+
+        <TextView
+            android:id="@+id/timeStamp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="0dp"
+            android:textSize="23sp"
+            android:textColor="#ffffff"
+            android:gravity="end"
+            android:layout_alignParentTop="true"
+            android:layout_toStartOf="@+id/dateStamp"
+            android:layout_marginEnd="46dp"/>
+
+        <TextView
+            android:id="@+id/dateStamp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="0dp"
+            android:textSize="23sp"
+            android:textColor="#ffffff"
+            android:layout_alignParentTop="false"
+            android:layout_alignParentEnd="true"
+            />
+            <!--
+            android:layout_marginEnd="100dp"
+            android:layout_marginEnd="100dp"
+            -->
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/connection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingBottom="0dp"
+        android:textSize="23sp"
+        android:textColor="#ffffff"
+        android:layout_alignBottom="@+id/imageView"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="44dp" />
+
+    <TextView
+        android:id="@+id/adapter_is_on"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingBottom="0dp"
+        android:textSize="23sp"
+        android:text="@string/bluetooth_is_off"
+        android:textColor="@android:color/holo_red_dark"
+        android:layout_alignBottom="@+id/imageView"
+        android:layout_alignParentStart="true" />
+
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/indicate_transferring_readings"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp" />
+
+    <Button
+        android:id="@+id/retryButton"
+        android:layout_width="240dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/adapter_is_on"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:background="#11577b"
+        android:onClick="retryUpload"
+        android:textColor="#ffffff"
+        android:textSize="18sp" />
+
+</RelativeLayout>
+
+
+    <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/LinearLayout1"
+        style="@style/MyStyle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:context="${packageName}.${activityClass}" >
+    <-
+        <ImageView
+            android:id="@+id/textView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:layout_weight="0.68"
+            android:contentDescription="@string/Shuga"
+            android:gravity="center_horizontal"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:src="@drawable/ic_logo_no_background" />
+    ->
+        <TextView
+            android:id="@+id/Level"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:layout_weight="0"
+            android:gravity="center|bottom"
+            android:paddingBottom="0dp"
+            android:paddingTop="24dp"
+            android:textSize="128sp" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:layout_weight=".1"
+            android:gravity="center|top"
+            android:paddingTop="0dp"
+            android:text="@string/MeasureType"
+            android:textSize="16sp" />
+
+
+        <TextView
+            android:id="@+id/timeStamp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:layout_weight="0.1"
+            android:gravity="center"
+            android:paddingBottom="0dp"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/dateStamp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:layout_weight="0.1"
+            android:gravity="center"
+            android:paddingBottom="0dp"
+            android:textSize="16sp" />
+
+
+        <TextView
+            android:id="@+id/connection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:layout_weight="0.54"
+            android:gravity="center"
+            android:paddingBottom="0dp"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center" >
+
+            <TextView
+                android:id="@+id/errorCodeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5" />
+
+            <TextView
+                android:id="@+id/tryAgainButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+    -->

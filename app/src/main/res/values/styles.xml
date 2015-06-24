@@ -1,0 +1,54 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+
+    -->
+    <style name="AppBaseTheme" parent="MyStyle">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="MyStyle">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+    <style name="MyStyle" parent="android:Theme.Holo.Light">
+
+        <!-- <item name="android:textColorPrimary">@android:color/holo_blue_light</item> -->
+        <item name="android:textColorSecondary">#036CE9</item>
+        <item name="android:colorPressedHighlight">#036CE9</item>
+      <!--  <item name="android:windowBackground">@drawable/background_gradient_2x</item>
+        <item name="android:colorBackground">@android:color/white</item> -->
+        <item name="android:actionBarStyle">@style/actionBarTheme</item>
+
+        <!-- <item name="android:background">@android:color/white</item> -->
+
+
+        <!--
+        <item name="android:textColorTertiary">@android:color/holo_blue_light</item>
+     <item name="android:clickcolor">#036CE9</item>
+    <item name="android:textColorPrimaryInverse">@android:color/holo_blue_light</item>
+    <item name="android:textColorSecondaryInverse">@android:color/holo_blue_light</item>
+    <item name="android:textColorTertiaryInverse">@android:color/holo_blue_light</item>
+    <item name="android:editTextColor">@android:color/holo_blue_light</item> 
+
+        -->
+    </style>
+
+    <style name="actionBarTheme" parent="@android:style/Widget.Holo.Light.ActionBar.Solid">
+        <item name="android:background">#036CE9</item>
+            <item name="android:titleTextStyle">@style/TitleTextStyle</item>
+        
+    </style>
+
+        <style name="TitleTextStyle" parent="android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+    <item name="android:textColor">#FFFFFF</item>
+    </style>   
+</resources>

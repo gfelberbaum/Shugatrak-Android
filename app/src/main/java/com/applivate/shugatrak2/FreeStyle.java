@@ -52,7 +52,7 @@ public class FreeStyle extends BaseMeter implements MeterInterface {
     private final byte[] FULL_METER_DUMP = {'m', 'e', 'm'};
     private final String SINGLE_LINE = "$log,";
     private final byte[] TURN_OFF_CABLE_DETECTION = {'$', 'c', 'o', 'l', '1', ',', '0', '\r', '\n'};
-    private final byte[] CHECK_CONECTION = {'$', 'c', 'o', 'l', '2', '\r', '\n'};
+//    private final byte[] CHECK_CONNECTION = {'$', 'c', 'o', 'l', '2', '\r', '\n'};
 
     /**
      * Holds the first instance of an unsuccessful (Broad definition) line that
@@ -76,8 +76,7 @@ public class FreeStyle extends BaseMeter implements MeterInterface {
         receivedData = "";
         endOfProcess = 0;
         repeatData = false;
-        finalReadings = new ArrayList<String>();
-
+        finalReadings = new ArrayList<>();
     }
 
     protected void onNewData(byte[] byteArrayExtra) {
@@ -94,7 +93,7 @@ public class FreeStyle extends BaseMeter implements MeterInterface {
         createRegister();
 
         sendCommand(TURN_OFF_CABLE_DETECTION);
-//		sendCommand(CHECK_CONECTION);
+//		sendCommand(CHECK_CONNECTION);
 
         if (alreadyHaveInfo) {
             doSingleReadings();
@@ -102,14 +101,13 @@ public class FreeStyle extends BaseMeter implements MeterInterface {
             doFullDump();
         }
 
-
         resetAdapterPhrase();
 
         if (checkForReadings()) {
             InternetSyncing.errorDump = "BAD CHECKSUM\n" + receivedData;
         }
 
-        return (String[]) finalReadings.toArray(new String[0]);
+        return finalReadings.toArray(new String[finalReadings.size()]);
     }
 
     /**
@@ -123,7 +121,6 @@ public class FreeStyle extends BaseMeter implements MeterInterface {
     public void process(String data) {
         String[] dataArray = data.split("\n");
 
-
         Logging.Info("Freestyle.Process", "data array size: " + dataArray.length);
         Logging.Verbose("FreeStyle.process()", Logging.arrayToDumpString(dataArray, "dataArray[]"));
         if (endOfProcess == 0) {
@@ -131,7 +128,7 @@ public class FreeStyle extends BaseMeter implements MeterInterface {
             endOfProcess = END_OF_HEADER;
         }
 
-        int i = endOfProcess;
+        int i;
         for (i = endOfProcess; i < dataArray.length; i++) {
             Logging.Verbose("FreeStyle.process", "Processing Line #: " + i + " of " + dataArray.length);
             if (!processLine(dataArray[i])) {
@@ -156,15 +153,15 @@ public class FreeStyle extends BaseMeter implements MeterInterface {
 
 
     public void doSingleReadings() {
+        Logging.Info("Freestyle.CommunicateWithDevice", "DoSingleReadings - START");
+
         try {
             SystemClock.sleep((long) (.5 * SECONDS));
         } catch (Exception ex) {
-            Logging.Error("Freestyle.communicateWithDevice", "EXCEPTION: ", ex);
+            Logging.Error("Freestyle.doSingleReadings", "EXCEPTION: ", ex);
         }
 
-        Logging.Info("Freestyle.CommunicateWithDevice", "DoSingleReadings - START");
         int readingToGrab = 1;
-
 
         while (connected && !repeatData && badGrabCount < 3) {
             byte[] readingCommand = (SINGLE_LINE + readingToGrab + "\r\n").getBytes();
@@ -185,7 +182,6 @@ public class FreeStyle extends BaseMeter implements MeterInterface {
             }
             while (newInfo);
             Logging.Info("Freestyle.CommunicateWithDevice", "This is the reading" + receivedData);
-
 
             if (singleReadingProcessing(receivedData)) {
                 //DO PROCESSING HERE
@@ -218,7 +214,7 @@ public class FreeStyle extends BaseMeter implements MeterInterface {
 
     public void doFullDump() {
 
-        Logging.Info("Freestyle.communicate with device", "start, sending message");
+        Logging.Info("Freestyle.doFullDump", "start, sending message");
         sendCommand(FULL_METER_DUMP);
         int numberOfResends = 0;
 
@@ -280,78 +276,82 @@ public class FreeStyle extends BaseMeter implements MeterInterface {
 
     public boolean processLine(String record) {
 
-
-        Logging.Debug("Freestyle.Processing line", "start:" + record);
-
-        record = record.replaceAll("[^ a-zA-Z0-9:]", " ").replace("   ", " ").replace("  ", " ");// Removes
-        // all
-        // Spaces
-        String[] RecordLines = record.split(" ");
-
-        Logging.Info("PAUL", "PDS:  RecordLines[0] = " + RecordLines[0]);
-
-        Logging.Debug("Freestyle.Processing line", "start:" + record);
-
-        if (RecordLines.length < 6) {
-            Logging.Debug("Freestyle.Processing lines", "Does not have the necessary information");
-            return false;
-        }
-
-        // [1,2,3] is date
-        // Date date;
-        String endDate = (RecordLines[1] + " " + RecordLines[2] + ", " + RecordLines[3]).trim();
-
-        // [4] is time
-        // ///////////////////////////////////////////////////////////////////////////////////////////////
-        String endTime = null;
-        Date time = null;
-
-        SimpleDateFormat original = new SimpleDateFormat("HH:mm", Locale.US);
         try {
-            time = original.parse(RecordLines[4].trim());
-            original.applyPattern("h:mm a");
-            endTime = original.format(time);
-        } catch (Exception ex) {
+            Logging.Debug("Freestyle.processLine()", "start:   record = " + record);
 
-            Logging.Error("DUMP: ", Logging.arrayToDumpString(RecordLines, "RecordLines[]"));
-            if (RecordLines.length > 4) {
-                Logging.Error("FreeStyle.processLine", "Probable parsing error: RecordLines[4] = " + String.valueOf(RecordLines[4]));
+            record = record.replaceAll("[^ a-zA-Z0-9:]", " ").replace("   ", " ").replace("  ", " ");// Removes
+            // all
+            // Spaces
+            String[] RecordLines = record.split(" ");
+
+            Logging.Info("PAUL", "PDS:  RecordLines[0] = " + RecordLines[0]);
+
+            Logging.Debug("Freestyle.Processing line", "start:" + record);
+
+            if (RecordLines.length < 6) {
+                Logging.Debug("Freestyle.processLine", "Returning FALSE:  Does not have the necessary information");
+                return false;
             }
-            Logging.Error("FreeStyle.processLine", "Probable parsing error: EXCEPTION: ", ex);
+
+            // [1,2,3] is date
+            // Date date;
+            String endDate = (RecordLines[1] + " " + RecordLines[2] + ", " + RecordLines[3]).trim();
+
+            // [4] is time
+            // ///////////////////////////////////////////////////////////////////////////////////////////////
+            String endTime = null;
+            Date time = null;
+
+            SimpleDateFormat original = new SimpleDateFormat("HH:mm", Locale.US);
+            try {
+                time = original.parse(RecordLines[4].trim());
+                original.applyPattern("h:mm a");
+                endTime = original.format(time);
+            } catch (Exception ex) {
+
+                Logging.Error("DUMP: ", Logging.arrayToDumpString(RecordLines, "RecordLines[]"));
+                if (RecordLines.length > 4) {
+                    Logging.Error("FreeStyle.processLine", "Probable parsing error: RecordLines[4] = " + String.valueOf(RecordLines[4]));
+                }
+                Logging.Error("FreeStyle.processLine", "Probable parsing error: EXCEPTION: ", ex);
+            }
+
+            Logging.Info("FreeStyle.ProcessLine time", "endTime: " + endTime + "; Time: " + time + "; RecordLines[4]"
+                    + RecordLines[4]);
+            // if(endTime.length()<2) endTime = "1:00 am";
+            // /////////////////////////////////////////////////////////////////////////////////////////////////////
+            // [0] is BGL
+
+            String bloodGlucoseLevel;
+            switch (RecordLines[0]) {
+                case "LO":
+                    bloodGlucoseLevel = "-2";
+                    break;
+                case "HI":
+                    bloodGlucoseLevel = "-1";
+                    break;
+
+                default:
+                    bloodGlucoseLevel = "" + Integer.parseInt(RecordLines[0].replaceAll("[^0-9.]", ""));
+            }
+
+            Logging.Debug("Freestyle.Processing Line", "checking the databases");
+
+            // Check here if it is the old newest addition
+            if (isMatchedReading(bloodGlucoseLevel, endDate, endTime)) {
+                Logging.Debug("Freestyle.processLine", "Returning FALSE:  isMatchedReading is true");
+                return false;
+            }
+
+            // Append the info
+            finalReadings.add(bloodGlucoseLevel);
+            finalReadings.add(endDate);
+            finalReadings.add(endTime != null ? endTime.trim() : null);
+
+            Logging.Debug("Freestyle.processLine End", "Successfully went through," + bloodGlucoseLevel + " " + endDate + " " + endTime);
+        } catch (Exception ex)  {
+            Logging.Error("FreeStyle.processLine()", "   EXCEPTION: ", ex);
         }
-
-        Logging.Info("FreeStyle.ProcessLine time", "endTime: " + endTime + "; Time: " + time + "; RecordLines[4]"
-                + RecordLines[4]);
-        // if(endTime.length()<2) endTime = "1:00 am";
-        // /////////////////////////////////////////////////////////////////////////////////////////////////////
-        // [0] is BGL
-
-        String BGL = "";
-        switch (RecordLines[0]) {
-            case "LO":
-                BGL = "-2";
-                break;
-            case "HI":
-                BGL = "-1";
-                break;
-
-            default:
-                BGL = "" + Integer.parseInt(RecordLines[0].replaceAll("[^0-9.]", ""));
-        }
-
-        Logging.Debug("Freestyle.Processing Line", "checking the databases");
-
-        // Check here if it is the old newest addition
-        if (isMatchedReading(BGL, endDate, endTime)) {
-            return false;
-        }
-
-        // Append the info
-        finalReadings.add(BGL);
-        finalReadings.add(endDate);
-        finalReadings.add(endTime.trim());
-
-        Logging.Debug("Freestyle.Processing line End", "Successfully went through," + BGL + " " + endDate + " " + endTime);
 
         return true;
     }
@@ -364,7 +364,9 @@ public class FreeStyle extends BaseMeter implements MeterInterface {
             calculatedChecksum += info.charAt((int) i);
         }
 
-        int realChecksum = Short.parseShort(info.substring(info.length() - 11, info.length() - 7), 16);
+        String valueToParse = info.substring(info.length() - 11, info.length() - 7);
+        Logging.Verbose("VALUE TO PARSE: [" + valueToParse + "]");
+        int realChecksum = Integer.parseInt(valueToParse, 16);  // Paul Sellards:  2015-06-24:  Changed this from Short.parse...  the hex value was overflowing.
 
         Logging.Verbose("Freestyle.isChecksumValid",
                 "Calculated: " + Integer.toHexString(calculatedChecksum) + "  Real: "
@@ -384,7 +386,7 @@ public class FreeStyle extends BaseMeter implements MeterInterface {
 
         int realChecksum = 0;
         try {
-            realChecksum = Short.parseShort(brokenUpInfo[5].substring(2, 6).trim(), 16);
+            realChecksum = Integer.parseInt(brokenUpInfo[5].substring(2, 6).trim(), 16);    // Paul Sellards:  2015-06-24:  Also changed this from Short.parse to prevent overflow.
         } catch (Exception ex) {
             Logging.Error("Freestyle.isSingleLineChecksumValid", "EXCEPTION: ", ex);
         }

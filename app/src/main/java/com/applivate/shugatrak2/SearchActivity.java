@@ -196,6 +196,9 @@ public class SearchActivity extends ListActivity {
 		final Intent intent = new Intent(this, BleService.class);
 		intent.putExtra(BleService.DEVICE_ADDRESS, device.getAddress());
 
+		if (device.getName().toUpperCase().contains(ADAPTER_NEW_NAME)){
+			(new DataSaver(getApplicationContext())).setIsKCAdapter(device.getName().split("-")[1].equals(ADAPTER_KC));
+		}
 		startService(intent);
 		finish();
 		Toast.makeText(this, R.string.adapter_is_set_up, Toast.LENGTH_SHORT).show();
@@ -326,15 +329,28 @@ public class SearchActivity extends ListActivity {
 			String deviceName = device.getName();
 			if (deviceName != null) {
 				holder.adapterText.setText("ShugaTrak Bluetooth Adapter");
+				if(deviceName.toUpperCase().contains(ADAPTER_NEW_NAME)){
+					holder.name.setText(deviceName.split("-")[2]);
+				}else{
+					holder.name.setText(device.getAddress());
+				}
 			} else {
 				holder.adapterText.setText("unknown name");
+				holder.name.setText(device.getAddress());
 			}
-			holder.name.setText(device.getAddress());
 
 			return convertView;
 		}
 
 	}
+
+
+	public static final String ADAPTER_NEW_NAME="SHG";
+	public static final String ADAPTER_OLD_NAME_1="OLS425";
+	public static final String ADAPTER_OLD_NAME_2="OLS426";
+	public static final String ADAPTER_BUTTON = "01";
+	public static final String ADAPTER_KC = "02";
+
 
 	/**
 	 * Class specifically designed to update as soon as there is a new device in
@@ -347,7 +363,8 @@ public class SearchActivity extends ListActivity {
 		 */
 		@Override
 		public void onLeScan(final BluetoothDevice device, final int rssi, byte[] scanRecord) {
-			if (device.getName().contains("OLS425")||device.getName().contains("OLS426")) {
+			if (device.getName().contains(ADAPTER_OLD_NAME_1)||device.getName().contains(ADAPTER_OLD_NAME_2)||device.getName().toUpperCase().contains(ADAPTER_NEW_NAME)) {
+
 				final Integer rs = rssi;
 				runOnUiThread(new Runnable() {
 

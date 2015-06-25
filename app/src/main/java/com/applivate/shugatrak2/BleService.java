@@ -5,10 +5,13 @@ package com.applivate.shugatrak2;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
+import java.util.logging.Logger;
 
 
+import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.Notification.Builder;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -27,6 +30,7 @@ import android.graphics.BitmapFactory;
 import android.os.Binder;
 import android.os.Build;
 import android.os.IBinder;
+import android.provider.ContactsContract;
 
 /**
  * *************************************************************************
@@ -202,6 +206,12 @@ public class BleService extends Service {
                 adapterChanged(context, intent);
             } else if (action.equals(SEARCH_DISCONNECT)) {
                 close();
+            }else if(action.equals(BaseService.ENDING_READINGS)){
+                if((new DataSaver(getApplicationContext())).isKCadapter())
+                    disconnect();
+            }else if(action.equals(getNewReadings)){
+                if(isDisconnected)
+                    connect((new DataSaver(getApplicationContext())).readSet(DataSaver.DeviceAddresses));
             }
 
         }
@@ -220,6 +230,8 @@ public class BleService extends Service {
         final IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction((BluetoothAdapter.ACTION_STATE_CHANGED));
         intentFilter.addAction(SEARCH_DISCONNECT);
+        intentFilter.addAction(getNewReadings);
+        intentFilter.addAction(BaseService.ENDING_READINGS);
         return intentFilter;
     }
 
@@ -308,6 +320,7 @@ public class BleService extends Service {
     public int onStartCommand(Intent intent, int flags, int startID) {
         if (BleG != null) return START_STICKY;
 
+
         BleThread thread = new BleThread(intent);
         thread.start();
 //		if(intent != null)
@@ -332,11 +345,23 @@ public class BleService extends Service {
         }
 
         public void run() {
+            Logging.Debug("BleService.run-> Has Started Timer:"+intent.getBooleanExtra(hasStartedTimer,false)+" and is KC:" + (new DataSaver(getApplicationContext())).isKCadapter());
             if (intent != null)
                 DeviceMacAddress = intent.getStringExtra(DEVICE_ADDRESS);
             else
                 DeviceMacAddress = (new DataSaver(getApplicationContext())).readSet(DataSaver.DeviceAddresses);
 
+            if (
+                    intent==null
+                    ||
+                    (
+                    !intent.getBooleanExtra(hasStartedTimer,false)
+                    &&
+                    (new DataSaver(getApplicationContext())).isKCadapter()
+                    )
+                    ){
+                setTimer();
+            }
 
             registerReceiver(received, filter());
             if (BleA == null) initialize();
@@ -367,6 +392,7 @@ public class BleService extends Service {
                 Logging.Info("BleService.onConnectionStateChange:  State connected, no services");
                 connected = true;
 
+                isDisconnected = true;
                 //Broadcast connecting
                 intentAction = A_CONNECTED;
                 UIConnected = conPhrase;
@@ -378,13 +404,14 @@ public class BleService extends Service {
                 Logging.Info("BleService.onConnectionStateChange:  State Disconnected");
                 connected = false;
 
+                isDisconnected = true;
                 //Broadcast disconnected
                 intentAction = A_DISCONNECTED;
                 UIConnected = disconPhrase;
                 broadcastUpdate(intentAction);
                 //TODO
                 Logging.Debug("BleService.onConnectionStateChange:  Manufacterer is " + Build.MANUFACTURER);
-                if (NEED_CLOSE_CONNECT) {
+                if (NEED_CLOSE_CONNECT &&!(new DataSaver(getApplicationContext())).isKCadapter()) {
                     Logging.Debug("BleService.onConnectionStateChange:  Issuing manual Reconnect");
                     close();
                     connect(DeviceMacAddress);
@@ -673,4 +700,28 @@ public class BleService extends Service {
         }
     }
 
+
+
+    private boolean isDisconnected;
+    public final String hasStartedTimer = "Started KC Timer";
+    public final String getNewReadings = "timeToGetNewReadings";
+    public  final long KC_ADAPTER_FREQUENCY =
+            1000*60;//Test timer todisconnect for one minute and reconnect after
+//                   4*
+//                    60*/*hours*/
+//                    60*/*minutes*/
+//                    1000/*seconds*/;
+
+
+    private void setTimer(){
+        Logging.Verbose("BleService.set timer - in set timer now");
+        AlarmManager alarm = (AlarmManager) getSystemService(ALARM_SERVICE);
+        Intent connectIntent = new Intent (getNewReadings);
+        connectIntent.putExtra(hasStartedTimer, true);
+
+
+
+        PendingIntent pendConnect =  PendingIntent.getBroadcast(this, 1, connectIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        alarm.setRepeating(AlarmManager.RTC_WAKEUP,System.currentTimeMillis()+KC_ADAPTER_FREQUENCY,KC_ADAPTER_FREQUENCY,pendConnect);
+    }
 }

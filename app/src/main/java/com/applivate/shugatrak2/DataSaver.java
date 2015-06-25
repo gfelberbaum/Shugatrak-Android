@@ -90,7 +90,7 @@ public class DataSaver {
 	 */
 	public static final String lastTime ="LatestTime";
 	/**
-	 * The current Adapter MAC-address, so that if the 
+	 * The current Adapter MAC-address, so that if the
 	 * phone is restarted, it will still be able to find
 	 * the address
 	 */
@@ -100,13 +100,16 @@ public class DataSaver {
 	 * to have failed going up
 	 */
 	public static final String MISSED_READINGS = "FailedReadings";
-	
-	
-	
-	
+
+
+	public static final String KANSAS_CITY = "isThisAKansasCityAdapter";
+
+	public static final String NAME_OF_ADAPTER = "New convention string";
+
+
 	////////////////////////////////////////////////////////
 	public static final String TOS = "AgreedToTOS";
-	
+
 
 	/**
 	 * Constructor
@@ -121,7 +124,7 @@ public class DataSaver {
 	}
 	/**
 	 * Used to save any item
-	 * 
+	 *
 	 * @param title The place you want to save
 	 * 			the String
 	 * @param item The String that will be saved
@@ -131,11 +134,11 @@ public class DataSaver {
 		editor.putString(title, item);
 		editor.commit();
 	}
-	
+
 	/**
-	 * Used to get a String that was saved at 
+	 * Used to get a String that was saved at
 	 * that location
-	 * 
+	 *
 	 * @param title The location of the String
 	 * 			that is wanted
 	 * @return The String desired. If there is
@@ -145,17 +148,27 @@ public class DataSaver {
 	public String readSet(String title){
 		return pref.getString(title, NO_ITEM);
 	}
-	
-	
+
+
 	public boolean didAcceptToS(){
 		return pref.getBoolean(TOS, false);
 	}
-	
+
 	public  void AcceptedToS( boolean accepted){
 		editor.putBoolean(TOS, accepted);
 		editor.commit();
 	}
-	
+
+	public boolean isKCadapter(){
+		return pref.getBoolean(KANSAS_CITY, false);
+	}
+
+	public  void setIsKCAdapter( boolean accepted){
+		editor.putBoolean(KANSAS_CITY, accepted);
+		editor.commit();
+	}
+
+
 	
 	public void  removeMemoryOfReadings(){
 		editor

@@ -318,6 +318,7 @@ public class BaseService extends IntentService {
                     sendBroadcast(toastIntent);
                 }
 
+                if(!dataSaver.isKCadapter())
                 meter.listenForWakeUpString();
 
 
@@ -377,7 +378,7 @@ public class BaseService extends IntentService {
      */
     public static void createNotification(Context context) {
         Logging.Info("BaseService.createNotification:  start");
-        playSound(context, R.raw.failure_sound);
+//        playSound(context, R.raw.failure_sound);
 
         Intent notifIntent = new Intent(context, TopLevelActivity.class);
         PendingIntent notifPendingIntent = PendingIntent.getActivity(context, 0, notifIntent, PendingIntent.FLAG_UPDATE_CURRENT);

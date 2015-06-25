@@ -325,7 +325,7 @@ public class FragmentMeasurementActivity extends Fragment {
                     int diff = GLOBAL_TOUCH_POSITION_Y - GLOBAL_TOUCH_CURRENT_POSITION_Y;
                     Logging.Verbose("FragmentMeasurementActivity.handleTouch", "ACTION_MOVE   Diff " + diff + " current " + GLOBAL_TOUCH_CURRENT_POSITION_Y + " prev " + GLOBAL_TOUCH_POSITION_Y);
 
-                    if (BleService.connected && !hasAlreadyActivated) {
+                    if ((BleService.connected)&& !hasAlreadyActivated) {
                         if (diff < -600) {          //GET ONE READING
                             hasAlreadyActivated = true;
 

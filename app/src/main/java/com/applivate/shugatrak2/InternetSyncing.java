@@ -359,7 +359,7 @@ public class InternetSyncing {
 				//AFTER UNBINDING, set a notification to send. Easy to get rid of, and opens the activity
 				BaseService.createNotification(context);
 				try{
-					FragmentWebActivity.createWeb();
+//					FragmentWebActivity.createWeb();
 				} catch (Exception ex) {
 					Logging.Error("BaseService.onPostExecute()", "   EXCEPTION: ", ex);
 				}
@@ -383,7 +383,7 @@ public class InternetSyncing {
 			//AFTER UNBINDING, set a notification to send. Easy to get rid of, and opens the activity
 			BaseService.createNotification(context);
 			try{
-				FragmentWebActivity.createWeb();
+//				FragmentWebActivity.createWeb();
 			} catch (Exception ex) {
 				Logging.Error("BaseService.onPostExecute()", "   EXCEPTION: ", ex);
 			}

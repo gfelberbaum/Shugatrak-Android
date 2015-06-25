@@ -89,6 +89,8 @@ public class TopLevelActivity extends Activity {
 				getActionBar().setSelectedNavigationItem(position);
 				if (position == 0){
 					AlertToSetupAdapter(datas.readSet(DataSaver.DeviceAddresses).equals(DataSaver.NO_ITEM));
+				}else if(position == 1){
+					FragmentWebActivity.createWeb();
 				}
 			}
 		});

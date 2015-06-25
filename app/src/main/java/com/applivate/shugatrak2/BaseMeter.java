@@ -12,6 +12,7 @@ import android.content.ServiceConnection;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.SystemClock;
+import android.widget.Toast;
 
 /**
  * *************************************************************************
@@ -452,6 +453,15 @@ public abstract class BaseMeter {
 
             }
         }
+    }
+
+    public void createNotification(int stringResourceId, int soundId, boolean toastAlso) {
+        String notifyText = this.context.getResources().getString(stringResourceId);
+//        if (toastAlso) {
+//            Toast toast = Toast.makeText(context, notifyText, Toast.LENGTH_LONG);
+//            toast.show();
+//        }
+        BaseService.createNotification(context, notifyText, soundId, toastAlso);
     }
 
 }

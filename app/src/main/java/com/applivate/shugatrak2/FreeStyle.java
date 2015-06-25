@@ -223,8 +223,13 @@ public class FreeStyle extends BaseMeter implements MeterInterface {
         while (badGrabCount < 3 && !goodPacket && numberOfResends < 3) {
             // Start While loop
             receivedData = "";
-            while (connected && (receivedData.equals("") || newInfo) && !repeatData && numberOfResends < 3) {
+//            while (connected && (receivedData.equals("") || newInfo) && !repeatData && numberOfResends < 3) {
+            while (connected && (receivedData.equals("") || newInfo) && !repeatData) {
                 Logging.Info("Freestyle.communicate with device", "New loop");
+
+                if (2 == numberOfResends) {
+                    createNotification(R.string.meter_not_responding, R.raw.failure_sound, true);
+                }
 
                 newInfo = false;
                 try {

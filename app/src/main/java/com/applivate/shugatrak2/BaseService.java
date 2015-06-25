@@ -355,14 +355,14 @@ public class BaseService extends IntentService {
 
     }
 
-    public static void playFailureSound(Context context) {
+    public static void playSound(Context context, int soundId) {
         Logging.Info("Entering BaseService.playFailureSound()");
         try {
-            MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.failure_sound);
+            MediaPlayer mediaPlayer = MediaPlayer.create(context, soundId);
             mediaPlayer.start();
         }
         catch (Exception ex) {
-            Logging.Error("BaseService.playFailureSound():  ");
+            Logging.Error("BaseService.playFailureSound():  ", "EXCEPTION:", ex);
         }
     }
 
@@ -377,7 +377,7 @@ public class BaseService extends IntentService {
      */
     public static void createNotification(Context context) {
         Logging.Info("BaseService.createNotification:  start");
-        playFailureSound(context);
+        playSound(context, R.raw.failure_sound);
 
         Intent notifIntent = new Intent(context, TopLevelActivity.class);
         PendingIntent notifPendingIntent = PendingIntent.getActivity(context, 0, notifIntent, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -386,8 +386,6 @@ public class BaseService extends IntentService {
         Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         String finalString = InternetSyncing.portalErrorString;
 
-
-        Notification.BigTextStyle bigScreen = new Notification.BigTextStyle();
         //Set up an S to make the message plural
         String multi = "";
         if (numberOfReadingsSentUp != 1) {
@@ -413,7 +411,6 @@ public class BaseService extends IntentService {
             soundUri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + context.getPackageName() + "/" + R.raw.data_ready2);
             finalString = NOTIFICATION_0 + numberOfReadingsSentUp + NOTIFICATION_1 + multi + NOTIFICATION_2;
         }
-        bigScreen.bigText(finalString);
 
         notificationBuilder
                 .setSmallIcon(R.drawable.notification_icon_1)//Action Bar icon for the notification
@@ -441,6 +438,48 @@ public class BaseService extends IntentService {
         context.sendBroadcast(toastIntent);
 
     }
+
+
+    /**
+     * Creates a notification, to notify the user of the
+     * newest information only. if there is no new information,
+     * It will reshow the old information. If no information
+     * what-so-ever, than it will display spaces.
+     *
+     * @param context Context for the class, to be able to
+     */
+    public static void createNotification(Context context, String notifyText, int soundId, boolean toastAlso) {
+        Logging.Verbose("Entering:  BaseService.createNotification(Context, notifyText = " + notifyText + ", toastAlso = " + toastAlso);
+
+        Intent notifIntent = new Intent(context, TopLevelActivity.class);
+        PendingIntent notifPendingIntent = PendingIntent.getActivity(context, 0, notifIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        Uri soundUri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + context.getPackageName() + "/" + soundId);
+        Notification.Builder notificationBuilder = new Notification.Builder(context);
+
+        if (toastAlso) {
+            Intent toastIntent = new Intent(MAKE_TOAST);
+            toastIntent.putExtra(TOAST_EXTRA, notifyText);
+            context.sendBroadcast(toastIntent);
+        }
+
+        notificationBuilder
+                .setSmallIcon(R.drawable.notification_icon_1)//Action Bar icon for the notification
+                .setContentTitle("ShugaTrak")//Title for notification
+                .setContentText(notifyText)// body of text for notification
+                .setStyle(new Notification.BigTextStyle().bigText(notifyText))//makes the drop down if there is more
+                .setAutoCancel(true)//gets rid of when clicked
+                .setContentIntent(notifPendingIntent)// makes the place when you clicked, as specified above
+                .setSound(soundUri)//specify the sound to play here
+                .setTicker(notifyText)//what shows up quickly at the top of the not. bar
+                .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_launcher))// makes the main icon, on the left
+        ;
+
+        //show the notification
+        ((NotificationManager) context.getSystemService(NOTIFICATION_SERVICE)).notify(1, notificationBuilder.build());
+
+        Logging.Verbose("Leaving:  BaseService.createNotification(Context, notifyText = " + notifyText + ", toastAlso = " + toastAlso);
+    }
+
 
 
     /**

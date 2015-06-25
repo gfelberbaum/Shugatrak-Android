@@ -44,11 +44,11 @@
     <!-- Build number must be set in: strings.xml, AndroidManifest, Debug.java -->
     <string name="AboutInfo">www.shugatrak.com \n
         Version: 1.3.1 \n
-        Build: 344 \n
+        Build: 345 \n
         \u00A9 2014 Applivate, LLC</string>
     <string name="tos">ShugaTrak® Mobile App Terms of Service
 \n\n
-Date of Last Revision: June 24, 2015
+Date of Last Revision: August 10, 2013
 \n\n
 Your use of the ShugaTrak® Mobile Application (the \"Application\") is subject to this License, the Terms of Use (http://www.shugatrak.com/about/tos) for this Site and our Privacy Policy (http://www.shugatrak.com/about/privacy) (collectively, the \"Terms\"). These Terms, which include and incorporate the Privacy Policy, are a legal agreement between you and ShugaTrak\u00A9, and they contain important information on your legal rights, remedies and obligations.
 \n\n

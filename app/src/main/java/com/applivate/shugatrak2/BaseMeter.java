@@ -112,10 +112,10 @@ public abstract class BaseMeter {
     protected boolean newInfo;
 
     /**
-     * Instance of the persistent data class. To be used with
+     * Instance of the persistent dataSaver class. To be used with
      * {@link #isMatchedReading(String, String, String)}
      */
-    private DataSaver data;
+    private DataSaver dataSaver;
 
     /**
      * If true, then the current reading
@@ -168,16 +168,16 @@ public abstract class BaseMeter {
     public BaseMeter(Context c, String signature) {
         bound = false;
         context = c;
-        data = new DataSaver(c);
+        dataSaver = new DataSaver(c);
         repeatData = false;
         connected = true;
         buffer = new ByteArrayOutputStream();
         this.signature = signature;
         badGrabCount = 0;
 
-        bgl = (data.readSet(DataSaver.lastNumber));
-        date = (data.readSet(DataSaver.lastDate));
-        time = (data.readSet(DataSaver.lastTime));
+        bgl = (dataSaver.readSet(DataSaver.lastNumber));
+        date = (dataSaver.readSet(DataSaver.lastDate));
+        time = (dataSaver.readSet(DataSaver.lastTime));
 
         alreadyHaveInfo = !(bgl.equals(DataSaver.NO_ITEM));
 
@@ -349,9 +349,9 @@ public abstract class BaseMeter {
      */
     protected void update() {
         //save information first
-        data.addSet(DataSaver.lastNumber, finalReadings.get(0));
-        data.addSet(DataSaver.lastDate, finalReadings.get(1));
-        data.addSet(DataSaver.lastTime, finalReadings.get(2));
+        dataSaver.addSet(DataSaver.lastNumber, finalReadings.get(0));
+        dataSaver.addSet(DataSaver.lastDate, finalReadings.get(1));
+        dataSaver.addSet(DataSaver.lastTime, finalReadings.get(2));
         BleService.UIConnected = BleService.GETTING_READINGS;
 
         try {

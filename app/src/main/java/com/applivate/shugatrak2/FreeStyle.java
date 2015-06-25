@@ -79,6 +79,7 @@ public class FreeStyle extends BaseMeter implements MeterInterface {
         finalReadings = new ArrayList<>();
     }
 
+    @Override
     protected void onNewData(byte[] byteArrayExtra) {
         // OVERRIDDEN FROM ABSTRACT
 //        Logging.Debug("Freestyle.onNewData", new String(byteArrayExtra));
@@ -222,7 +223,7 @@ public class FreeStyle extends BaseMeter implements MeterInterface {
         while (badGrabCount < 3 && !goodPacket && numberOfResends < 3) {
             // Start While loop
             receivedData = "";
-            while (connected && (receivedData.equals("") || newInfo) && !repeatData) {
+            while (connected && (receivedData.equals("") || newInfo) && !repeatData && numberOfResends < 3) {
                 Logging.Info("Freestyle.communicate with device", "New loop");
 
                 newInfo = false;
@@ -236,7 +237,8 @@ public class FreeStyle extends BaseMeter implements MeterInterface {
                 // try again
                 if (receivedData.equals("")) {
                     sendCommand(FULL_METER_DUMP);
-                    Logging.Info("Freestyle.communicate with device", "resent the FULL_METER_DUMP: " + ++numberOfResends);
+                    ++numberOfResends;
+                    Logging.Info("Freestyle.communicate with device", "resent the FULL_METER_DUMP: " + numberOfResends);
 
                     // If junk, wait and flush
                 } else if (!receivedData.startsWith("\r\n")) {
@@ -376,26 +378,35 @@ public class FreeStyle extends BaseMeter implements MeterInterface {
     }
 
     public boolean isSingleLineChecksumValid(String info) {
+        Logging.Info("FreeStyle.isSingleLineChecksumValid(info)   info=[" + info + "]");
         int calculatedChecksum = 0;
-
-        String[] brokenUpInfo = info.split("\n");
-
-        for (long i = 0; i < info.indexOf(brokenUpInfo[5]); i++) {
-            calculatedChecksum += info.charAt((int) i);
-        }
-
         int realChecksum = 0;
+        boolean retval = false;
+
         try {
-            realChecksum = Integer.parseInt(brokenUpInfo[5].substring(2, 6).trim(), 16);    // Paul Sellards:  2015-06-24:  Also changed this from Short.parse to prevent overflow.
+            String[] brokenUpInfo = info.split("\n");
+            Logging.Debug("FreeStyle.isSingleLineChecksumValid(info)", Logging.arrayToDumpString(brokenUpInfo, "brokenUpInfo"));
+
+            for (long i = 0; i < info.indexOf(brokenUpInfo[5]); i++) {
+                calculatedChecksum += info.charAt((int) i);
+            }
+
+            try {
+                realChecksum = Integer.parseInt(brokenUpInfo[5].substring(2, 6).trim(), 16);    // Paul Sellards:  2015-06-24:  Also changed this from Short.parse to prevent overflow.
+            } catch (Exception ex) {
+                Logging.Error("Freestyle.isSingleLineChecksumValid", "EXCEPTION: ", ex);
+            }
+
+            Logging.Verbose("Freestyle.isSingleLineChecksumValid",
+                    "Calculated: " + Integer.toHexString(calculatedChecksum) + "  Real: "
+                            + Integer.toHexString(realChecksum));
+
+            retval = calculatedChecksum == realChecksum;
         } catch (Exception ex) {
-            Logging.Error("Freestyle.isSingleLineChecksumValid", "EXCEPTION: ", ex);
+            retval = false;
+            Logging.Error("FreeStyle.isSingleLineChecksumValid(info)", "EXCEPTION: ", ex);
         }
-
-        Logging.Verbose("Freestyle.isSingleLineChecksumValid",
-                "Calculated: " + Integer.toHexString(calculatedChecksum) + "  Real: "
-                        + Integer.toHexString(realChecksum));
-
-        return calculatedChecksum == realChecksum;
+        return retval;
 
     }
 

@@ -313,17 +313,17 @@ public class FragmentMeasurementActivity extends Fragment {
             switch (action) {
                 case MotionEvent.ACTION_DOWN:
                     GLOBAL_TOUCH_POSITION_Y = (int) m.getY();
-                    Logging.Verbose("FragmentMeasurementActivity", "DOWN" + " current " + GLOBAL_TOUCH_CURRENT_POSITION_Y + " prev " + GLOBAL_TOUCH_POSITION_Y);
+                    Logging.Verbose("FragmentMeasurementActivity.handleTouch", "ACTION_DOWN" + " current " + GLOBAL_TOUCH_CURRENT_POSITION_Y + " prev " + GLOBAL_TOUCH_POSITION_Y);
                     break;
                 case MotionEvent.ACTION_UP:
                     GLOBAL_TOUCH_CURRENT_POSITION_Y = 0;
                     hasAlreadyActivated = false;
-                    Logging.Verbose("FragmentMeasurementActivity", "UP" + " current " + GLOBAL_TOUCH_CURRENT_POSITION_Y + " prev " + GLOBAL_TOUCH_POSITION_Y);
+                    Logging.Verbose("FragmentMeasurementActivity.handleTouch", "ACTION_UP" + " current " + GLOBAL_TOUCH_CURRENT_POSITION_Y + " prev " + GLOBAL_TOUCH_POSITION_Y);
                     break;
                 case MotionEvent.ACTION_MOVE:
                     GLOBAL_TOUCH_CURRENT_POSITION_Y = (int) m.getY();
                     int diff = GLOBAL_TOUCH_POSITION_Y - GLOBAL_TOUCH_CURRENT_POSITION_Y;
-                    Logging.Verbose("FragmentMeasurementActivity", "Diff " + diff + " current " + GLOBAL_TOUCH_CURRENT_POSITION_Y + " prev " + GLOBAL_TOUCH_POSITION_Y);
+                    Logging.Verbose("FragmentMeasurementActivity.handleTouch", "ACTION_MOVE   Diff " + diff + " current " + GLOBAL_TOUCH_CURRENT_POSITION_Y + " prev " + GLOBAL_TOUCH_POSITION_Y);
 
                     if (BleService.connected && !hasAlreadyActivated) {
                         if (diff < -600) {          //GET ONE READING
@@ -336,7 +336,7 @@ public class FragmentMeasurementActivity extends Fragment {
                             hasAlreadyActivated = true;
                             try {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                                builder.setMessage("").setTitle("Get All Readings")//TODO move statements to String.xml
+                                builder.setMessage("").setTitle(R.string.get_all_meter_readings)
                                         .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 
                                             public void onClick(DialogInterface dialog, int which) {

@@ -399,8 +399,6 @@ public class BaseService extends IntentService {
         //If it was an unsuccessful upload, add a button to try again
         if (InternetSyncing.portalErrorString != InternetSyncing.SD_GOOD_STRING) {
 
-            playFailureSound(context);
-
             Intent retryIntent = new Intent(context.getApplicationContext(), BaseService.class);
             retryIntent.setAction(RETRY_UPLOAD);
             PendingIntent pendingRetryIntent = PendingIntent.getService(context.getApplicationContext(), 0, retryIntent, 0);
@@ -484,7 +482,7 @@ public class BaseService extends IntentService {
     public void badChecksumErrorHandling(String[] returnInfo, MeterInterface meter, String errorReason) {
 
 
-        ArrayList<Reading> readings = new ArrayList<Reading>();
+        ArrayList<Reading> readings = new ArrayList<>();
         //Convert everything into an easy arraylist to send everything up easily
         int i;
         IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);

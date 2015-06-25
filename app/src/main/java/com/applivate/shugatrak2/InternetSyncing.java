@@ -74,7 +74,7 @@ public class InternetSyncing {
 	public static final String TP_NO_INTERNET_STRING = "Sorry, no internet connection";// lack
 																						// of
 																						// internet
-	public static final String TP_UNKNOWN_INTERNET_STRING = "UNKOWN ERROR CODE: ";
+	public static final String TP_UNKNOWN_INTERNET_STRING = "UNKNOWN ERROR CODE: ";
 
 	// All Notifications messages, at least previously
 	// now only SD_GOOD_STRING not used, all others
@@ -88,9 +88,9 @@ public class InternetSyncing {
 	public static final String SD_NO_INTERNET_STRING = "Unable to upload readings, no internet connection";// lack
 																											// of
 																											// internet
-	public static final String SD_UNKNOWN_INTERNET_STRING = "UNKOWN ERROR CODE: ";
+	public static final String SD_UNKNOWN_INTERNET_STRING = "UNKNOWN ERROR CODE: ";
 
-	public static final String EN_GOOD_STRING = "Data Transfer error, The ShugaTrak team has been notified";
+	public static String EN_GOOD_STRING = "R.string.meter_not_responding";
 	public static final String EN_BAD_REQUEST_STRING = SD_BAD_REQUEST_STRING;
 	public static final String EN_BAD_AUTHENTICATION_STRING = SD_BAD_AUTHENTICATION_STRING;
 	public static final String EN_SERVER_ERROR_STRING = SD_SERVER_ERROR_STRING;// TODO
@@ -98,28 +98,45 @@ public class InternetSyncing {
 	public static final String EN_NO_INTERNET_STRING = SD_NO_INTERNET_STRING;// lack of internet
 	public static final String EN_UNKNOWN_INTERNET_STRING = SD_UNKNOWN_INTERNET_STRING;
 
+	private static boolean stringsInitializedFromResources = false;
 
 	public static String errorDump;
+
 
 	/**
 	 * Constructor
 	 * 
-	 * @param c
+	 * @param context
 	 *            Used to set up the dialog pop up for Verify function
 	 */
-	public InternetSyncing(Context c) {
-		dataSaver = new DataSaver(c);
-		context = c;
+	public InternetSyncing(Context context) {
+		readStringsFromResources(context);
+		dataSaver = new DataSaver(context);
+		this.context = context;
 		synced = false;
 		portalErrorString = null;
+	}
+
+
+	public static void readStringsFromResources(Context context) {
+		if (!stringsInitializedFromResources) {
+			try {
+				EN_GOOD_STRING = context.getResources().getString(R.string.meter_not_responding);
+                Logging.Verbose("InternetSyncing: readStringsFromResources:   EN_GOOD_STRING:", EN_GOOD_STRING);
+
+				// TODO:  implement this behavior for other strings in this class....
+
+				stringsInitializedFromResources = true;
+			}
+			catch (Exception ex) {
+				Logging.Error("InternetSyncing.readStringsFromResources()", " EXCEPTION: ", ex);
+			}
+		}
 	}
 
 	public void ErrorSync(InternetPayload payload) {
 
 		// start the async class
-
-		Logging.Info("SUGARTRAK", "PAUL: starting ErrorSync");
-
 		ErrorSyncTask task = new ErrorSyncTask();
 		task.execute(payload);
 

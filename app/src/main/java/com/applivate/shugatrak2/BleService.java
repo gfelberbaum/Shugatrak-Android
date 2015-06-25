@@ -386,13 +386,16 @@ public class BleService extends Service {
                 close();
                 connect(DeviceMacAddress);
             }
-            if (status != 0) return;
+            if (status != 0){
+                close();
+                connect(DeviceMacAddress);
+                return;
+            }
 
             if (state == BluetoothProfile.STATE_CONNECTED) {
                 Logging.Info("BleService.onConnectionStateChange:  State connected, no services");
                 connected = true;
 
-                isDisconnected = true;
                 //Broadcast connecting
                 intentAction = A_CONNECTED;
                 UIConnected = conPhrase;
@@ -577,7 +580,12 @@ public class BleService extends Service {
             Logging.Warning("BleService.connect:  BleA is not on, or there is no address");
             return false;
         }
+        if(BleG!= null){
+            BleG.connect();
+            return true;
+        }
 
+        isDisconnected = false;
         final BluetoothDevice device = BleA.getRemoteDevice(address);
 
         BleG = device.connectGatt(this, AUTO_CONNECT, callback);

@@ -25,6 +25,7 @@
         <EditText
             android:id="@+id/takenPass"
             android:layout_width="240dp"
+            android:fontFamily="sans-serif-thin"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignStart="@+id/takenUser"
@@ -41,6 +42,7 @@
         <EditText
             android:id="@+id/takenUser"
             android:layout_width="240dp"
+            android:fontFamily="sans-serif-thin"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
@@ -61,6 +63,7 @@
 
     <Button
         android:id="@+id/cnmtButton"
+        android:fontFamily="sans-serif-thin"
         android:layout_width="240dp"
         android:layout_height="40dp"
         android:layout_below="@+id/verifyButton"
@@ -77,6 +80,7 @@
         android:id="@+id/stmtButton"
         android:layout_width="240dp"
         android:layout_height="40dp"
+        android:fontFamily="sans-serif-thin"
         android:layout_below="@+id/cnmtButton"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
@@ -93,6 +97,7 @@
         android:layout_height="40dp"
         android:layout_below="@+id/passwordContainer"
         android:layout_centerHorizontal="true"
+        android:fontFamily="sans-serif-thin"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
         android:background="#11577b"
@@ -105,10 +110,9 @@
         android:id="@+id/MeterType"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-thin"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/verifyButton"
-        android:clickable="true"
-        android:onClick="changeTimeForKCAdapter"
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:textColor="#ffffff"
@@ -122,6 +126,7 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/MeterType"
         android:layout_marginTop="8dp"
+        android:fontFamily="sans-serif-thin"
         android:gravity="center"
         android:textColor="#ffffff"
         android:textSize="18sp"
@@ -129,6 +134,7 @@
 
     <Button
         android:id="@+id/AboutButton"
+        android:fontFamily="sans-serif-thin"
         android:layout_width="240dp"
         android:layout_height="40dp"
         android:layout_below="@+id/stmtButton"

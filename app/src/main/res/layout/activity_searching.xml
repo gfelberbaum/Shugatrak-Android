@@ -10,6 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="32dp"
+        android:fontFamily="sans-serif-thin"
         android:paddingStart="16dp" 
         android:paddingEnd="0dp" />
 
@@ -19,6 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingStart="16dp"
+        android:fontFamily="sans-serif-thin"
         android:paddingEnd="0dp"
         android:paddingBottom="8dp" />
 

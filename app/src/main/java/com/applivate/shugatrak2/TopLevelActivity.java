@@ -484,8 +484,6 @@ public class TopLevelActivity extends Activity {
 								break;
 						}
 						updateMeter();
-						Toast.makeText(getApplicationContext(), R.string.press_adapter_button,
-								Toast.LENGTH_LONG).show();
 					}
 				});
 		builder.create().show();

@@ -461,7 +461,7 @@ public abstract class BaseMeter {
 //            Toast toast = Toast.makeText(context, notifyText, Toast.LENGTH_LONG);
 //            toast.show();
 //        }
-        BaseService.createNotification(context, notifyText, soundId, toastAlso);
+        BaseService.createNotification(context, notifyText, soundId, toastAlso,1);
     }
 
 }

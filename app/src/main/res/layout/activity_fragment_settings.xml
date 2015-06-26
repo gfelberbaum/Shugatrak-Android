@@ -107,6 +107,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/verifyButton"
+        android:clickable="true"
+        android:onClick="changeTimeForKCAdapter"
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:textColor="#ffffff"

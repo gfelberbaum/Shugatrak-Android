@@ -449,7 +449,7 @@ public class BaseService extends IntentService {
      *
      * @param context Context for the class, to be able to
      */
-    public static void createNotification(Context context, String notifyText, int soundId, boolean toastAlso) {
+    public static void createNotification(Context context, String notifyText, int soundId, boolean toastAlso, int idNumber) {
         Logging.Verbose("Entering:  BaseService.createNotification(Context, notifyText = " + notifyText + ", toastAlso = " + toastAlso);
 
         Intent notifIntent = new Intent(context, TopLevelActivity.class);
@@ -476,7 +476,7 @@ public class BaseService extends IntentService {
         ;
 
         //show the notification
-        ((NotificationManager) context.getSystemService(NOTIFICATION_SERVICE)).notify(1, notificationBuilder.build());
+        ((NotificationManager) context.getSystemService(NOTIFICATION_SERVICE)).notify(idNumber, notificationBuilder.build());
 
         Logging.Verbose("Leaving:  BaseService.createNotification(Context, notifyText = " + notifyText + ", toastAlso = " + toastAlso);
     }

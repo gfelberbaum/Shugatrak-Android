@@ -12,6 +12,7 @@ import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
@@ -24,7 +25,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
+
+import java.util.Calendar;
 
 /****************************************************************************
  * TOP LEVEL ACTIVITY
@@ -394,6 +398,103 @@ public class TopLevelActivity extends Activity {
 		retryIntent.setAction(BaseService.RETRY_UPLOAD);
 		startService(retryIntent);
 	}
+
+
+
+	public void changeTimeForKCAdapter(View v){
+		if(!Debug.KC_DEBUG) return;
+
+
+		String[] times = {"1 minute", "5 minutes", "15 minutes","30 minutes", "1 hour", "4 hours", "6 hours", "12 hours"};
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setTitle("Set the times").setItems(times,
+				new OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+
+						switch (which) {
+							case 0:
+								BleService.KC_ADAPTER_FREQUENCY =
+//										4*
+//										60*/*hours*/
+										60*/*minutes*/
+										1000/*seconds*/;
+
+
+								break;
+							case 1:
+								BleService.KC_ADAPTER_FREQUENCY =
+									5*
+//									60*/*hours*/
+									60*/*minutes*/
+									1000/*seconds*/;
+
+								break;
+							case 2:
+								BleService.KC_ADAPTER_FREQUENCY =
+										15*
+//										60*/*hours*/
+										60*/*minutes*/
+										1000/*seconds*/;
+
+								break;
+							case 3:
+								BleService.KC_ADAPTER_FREQUENCY =
+										30*
+//										60*/*hours*/
+										60*/*minutes*/
+										1000/*seconds*/;
+
+								break;
+							case 4:
+								BleService.KC_ADAPTER_FREQUENCY =
+//										1*
+										60*/*hours*/
+										60*/*minutes*/
+										1000/*seconds*/;
+
+								break;
+							case 5:
+								BleService.KC_ADAPTER_FREQUENCY =
+										4*
+										60*/*hours*/
+										60*/*minutes*/
+										1000/*seconds*/;
+								break;
+							case 6:
+								BleService.KC_ADAPTER_FREQUENCY =
+										6*
+												60*/*hours*/
+												60*/*minutes*/
+												1000/*seconds*/;
+
+								break;
+							case 7:
+								BleService.KC_ADAPTER_FREQUENCY =
+										12*
+												60*/*hours*/
+												60*/*minutes*/
+												1000/*seconds*/;
+								break;
+
+
+							default:
+								break;
+						}
+						updateMeter();
+						Toast.makeText(getApplicationContext(), R.string.press_adapter_button,
+								Toast.LENGTH_LONG).show();
+					}
+				});
+		builder.create().show();
+
+		Intent reconnectIntent = new Intent(BleService.getNewReadings);
+		sendBroadcast(reconnectIntent);
+
+
+	}
+
 
 
 }

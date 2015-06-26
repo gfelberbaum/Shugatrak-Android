@@ -2,6 +2,8 @@
 package com.applivate.shugatrak2;
 
 
+import java.sql.Time;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
@@ -351,17 +353,17 @@ public class BleService extends Service {
             else
                 DeviceMacAddress = (new DataSaver(getApplicationContext())).readSet(DataSaver.DeviceAddresses);
 
-            if (
-                    intent==null
-                    ||
-                    (
-                    !intent.getBooleanExtra(hasStartedTimer,false)
-                    &&
-                    (new DataSaver(getApplicationContext())).isKCadapter()
-                    )
-                    ){
-                setTimer();
-            }
+//            if (
+//                    intent==null
+//                    ||
+//                    (
+//                    !intent.getBooleanExtra(hasStartedTimer,false)
+//                    &&
+//                    (new DataSaver(getApplicationContext())).isKCadapter()
+//                    )
+//                    ){
+//                setTimer();
+//            }
 
             registerReceiver(received, filter());
             if (BleA == null) initialize();
@@ -605,7 +607,24 @@ public class BleService extends Service {
         Logging.Debug("BleService.disconnect", "In Disconnect");
         if (BleA == null || BleG == null) return;
         BleG.disconnect();
+
+        setTimer();
+        //Below has been written so that we can monitor how the connection rates work with the current KC adapter. This call only happens if it is KC, so that part is not necessary
+        if(Debug.KC_DEBUG){
+            Date currentTimeDate = new Date();
+            BaseService.createNotification(
+                    getApplicationContext(),
+                    "This app has disconnected " + (++numberOfConnects)+ "time"+(numberOfConnects!=1?"s ":" ")+ "with the last time being at " +currentTimeDate.toString(),
+                    0,
+                    false,
+                    5
+            );
+        }
     }
+
+    long numberOfConnects;
+
+
 
     /**
      * to formally end the service, close and remove
@@ -710,15 +729,15 @@ public class BleService extends Service {
 
 
 
-    private boolean isDisconnected;
+    public static boolean isDisconnected;
     public final String hasStartedTimer = "Started KC Timer";
-    public final String getNewReadings = "timeToGetNewReadings";
-    public  final long KC_ADAPTER_FREQUENCY =
-            1000*60;//Test timer todisconnect for one minute and reconnect after
-//                   4*
-//                    60*/*hours*/
-//                    60*/*minutes*/
-//                    1000/*seconds*/;
+    public static final String getNewReadings = "timeToGetNewReadings";
+    public static  long KC_ADAPTER_FREQUENCY =
+//            1000*60;//Test timer todisconnect for one minute and reconnect after
+                   4*
+                    60*/*hours*/
+                    60*/*minutes*/
+                    1000/*seconds*/;
 
 
     private void setTimer(){
@@ -730,6 +749,6 @@ public class BleService extends Service {
 
 
         PendingIntent pendConnect =  PendingIntent.getBroadcast(this, 1, connectIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-        alarm.setRepeating(AlarmManager.RTC_WAKEUP,System.currentTimeMillis()+KC_ADAPTER_FREQUENCY,KC_ADAPTER_FREQUENCY,pendConnect);
+        alarm.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + KC_ADAPTER_FREQUENCY, pendConnect);
     }
 }

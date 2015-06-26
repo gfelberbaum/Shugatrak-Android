@@ -197,6 +197,7 @@ public class SearchActivity extends ListActivity {
 		intent.putExtra(BleService.DEVICE_ADDRESS, device.getAddress());
 
 		if (device.getName().toUpperCase().contains(ADAPTER_NEW_NAME)){
+			(new DataSaver(getApplicationContext())).addSet(DataSaver.NAME_OF_ADAPTER,device.getName());
 			(new DataSaver(getApplicationContext())).setIsKCAdapter(device.getName().split("-")[1].equals(ADAPTER_KC));
 		}
 		startService(intent);
@@ -330,7 +331,7 @@ public class SearchActivity extends ListActivity {
 			if (deviceName != null) {
 				holder.adapterText.setText("ShugaTrak Bluetooth Adapter");
 				if(deviceName.toUpperCase().contains(ADAPTER_NEW_NAME)){
-					holder.name.setText(deviceName.split("-")[2]);
+					holder.name.setText(deviceName);
 				}else{
 					holder.name.setText(device.getAddress());
 				}

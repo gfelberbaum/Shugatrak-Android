@@ -205,6 +205,7 @@ public class BaseService extends IntentService {
                             returnInfo[i + 2],                  //TIME
                             Signature,                          //METER TYPE
                             dataSaver.readSet(DataSaver.DeviceAddresses),   //DEVICE ADDRESS
+                            dataSaver.readSet(DataSaver.NAME_OF_ADAPTER),//ADAPTER NAME using new convention
                             batteryLevel                        //PHONE BATTERY LEVEL
                     ));
                 }
@@ -542,6 +543,7 @@ public class BaseService extends IntentService {
                     returnInfo[i + 2],//TIME
                     Signature,//METER TYPE
                     dataSaver.readSet(DataSaver.DeviceAddresses),//DEVICE ADDRESS
+                    dataSaver.readSet(DataSaver.NAME_OF_ADAPTER),//ADAPTER NAME using new convention
                     batteryLevel//PHONE BATTERY LEVEL
 
             ));

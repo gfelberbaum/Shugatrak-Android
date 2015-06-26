@@ -52,6 +52,7 @@ public class Reading {
 	 * {@link DataSaver#DeviceAddresses}
 	 */
 	private String adapter_sn;
+	private String adapter_name;
 
 
 	//////////////////////////
@@ -79,7 +80,7 @@ public class Reading {
 	 * @param adapter_sn {@link #adapter_sn}
 	 */
 	public Reading(int value, String date, String time, String meter_model,
-			String adapter_sn, float phone_battery_levels) {
+			String adapter_sn, String adapter_name, float phone_battery_levels) {
 
 		if ((value > 20 && value < 600) || (value == -1 || value == -2)) {
 			this.value = value;
@@ -95,6 +96,7 @@ public class Reading {
 
 		this.meter_model = meter_model;
 		this.adapter_sn = adapter_sn;
+		this.adapter_name = adapter_name;
 
 		Time now = new Time();
 		now.setToNow();
@@ -139,6 +141,7 @@ public class Reading {
 				"\",\"reading_error_message\":\""+reading_error_message +
 				(outOfRangeValue!=-5? "\",\"outOfRangeValue\":\"" + outOfRangeValue :"")+
 				"\",\"adapter_sn\":\"" + adapter_sn +
+				"\",\"adapter_name\":\"" + adapter_name +
 				"\"}";
 
 //				"\",\"Version\":\""+versionCode+

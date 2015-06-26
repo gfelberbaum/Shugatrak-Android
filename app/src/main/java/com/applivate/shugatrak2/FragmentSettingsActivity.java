@@ -149,7 +149,12 @@ public class FragmentSettingsActivity extends Fragment {
         if (data.readSet(DataSaver.DeviceAddresses).equals(DataSaver.NO_ITEM)) {
             adapterTView.setText("no adapter set up");
         } else {
-            adapterTView.setText(data.readSet(DataSaver.DeviceAddresses));
+            if(data.readSet(DataSaver.NAME_OF_ADAPTER).equals(DataSaver.NO_ITEM)){
+
+                adapterTView.setText(data.readSet(DataSaver.DeviceAddresses));
+            }else{
+                adapterTView.setText(data.readSet(DataSaver.NAME_OF_ADAPTER));
+            }
         }
 
         if (data.readSet(DataSaver.meterType).equals(DataSaver.NO_ITEM)) {

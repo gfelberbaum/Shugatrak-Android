@@ -54,26 +54,29 @@ public class InternetPayload {
 
 
 	public String errors;
-	
+	private String baseInfo;
+
 	/**
 	 * Constructor
 	 * @param email {@link #email}
 	 * @param password {@link #password}
 	 * @param reading {@link #readings}
 	 */
-	public InternetPayload(String email, String password, ArrayList<Reading> reading){
+	public InternetPayload(String email, String password, ArrayList<Reading> reading, String baseInfo){
 		this.email = email;
 		this.password = password;
 		this.readings = reading;
+		this.baseInfo = baseInfo;
 	}
 	
 	
-	public InternetPayload(String email, String password, ArrayList<Reading> reading, String ErrorInformation ){
+	public InternetPayload(String email, String password, ArrayList<Reading> reading, String ErrorInformation, String baseInfo ){
 		this.email = email;
 		this.password = password;
 		this.readings = reading;
 		errors = ErrorInformation;
-		
+
+		this.baseInfo = baseInfo;
 	}
 
 	/**
@@ -89,6 +92,7 @@ public class InternetPayload {
 					"{\"email\":\"" + email +
 					"\",\"password\":\"" + password +
 					"\",\"app_version\":\"" + versionCode+
+					"\",\"mobile_device_info\":\"" + baseInfo+
 					"\",\"readings\":" + readings;
 		else{
 
@@ -96,6 +100,7 @@ public class InternetPayload {
 					"\",\"password\":\"" + password +
 					"\",\"Error\":\"" + errors +
 					"\",\"app_version\":\"" + versionCode+
+					"\",\"mobile_device_info\":\"" + baseInfo+
 					"\",\"readings\":" + readings;
 		}
 	

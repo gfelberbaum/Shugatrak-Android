@@ -402,6 +402,7 @@ public class TopLevelActivity extends Activity {
 
 
 	public void changeTimeForKCAdapter(View v){
+		Logging.Debug("You clicked the meter string");
 		if(!Debug.KC_DEBUG) return;
 
 

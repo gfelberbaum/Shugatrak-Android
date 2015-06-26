@@ -21,6 +21,7 @@ import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.util.Log;
 
 /****************************************************************************
@@ -239,9 +240,17 @@ public class InternetSyncing {
 	 * a {@link AsyncTask} class {@link SyncDataTask}
 	 */
 	public void SyncData(ArrayList<Reading> readings) {
+		String baseInfo="device_knowledge:";
+		baseInfo += " OS Version: " + System.getProperty("os.version") + "(" + android.os.Build.VERSION.INCREMENTAL + ")";
+		baseInfo += " OS API Level: " + android.os.Build.VERSION.SDK_INT;
+		baseInfo += " Device: " + android.os.Build.DEVICE;
+		baseInfo += " Model (and Product): " + android.os.Build.MODEL + " ("+ android.os.Build.PRODUCT + ")";
+		baseInfo += " manufacturer" + Build.MANUFACTURER;
+		//DEPRECATED: USE getPoint() instead
+		baseInfo+= " has Keyboard: "+ (context.getApplicationContext().getResources().getConfiguration().keyboard != context.getResources().getConfiguration().KEYBOARD_NOKEYS);
 
 		InternetPayload payload = new InternetPayload(dataSaver.readSet(DataSaver.userName),
-						dataSaver.readSet(DataSaver.Password), readings);
+						dataSaver.readSet(DataSaver.Password), readings,baseInfo);
 
 		// start the async class
 		SyncDataTask task = new SyncDataTask();
@@ -403,8 +412,18 @@ public class InternetSyncing {
 	public void TestPassword() {
 		Logging.Info("InternetSync.testPassword", "Start Test password");
 
+		String baseInfo="device_knowledge:";
+		baseInfo += " OS Version: " + System.getProperty("os.version") + "(" + android.os.Build.VERSION.INCREMENTAL + ")";
+		baseInfo += " OS API Level: " + android.os.Build.VERSION.SDK_INT;
+		baseInfo += " Device: " + android.os.Build.DEVICE;
+		baseInfo += " Model (and Product): " + android.os.Build.MODEL + " ("+ android.os.Build.PRODUCT + ")";
+		baseInfo += " manufacturer" + Build.MANUFACTURER;
+		//DEPRECATED: USE getPoint() instead
+		baseInfo += " has Keyboard: "+ (context.getApplicationContext().getResources().getConfiguration().keyboard != context.getResources().getConfiguration().KEYBOARD_NOKEYS);
+
+
 		InternetPayload payload = new InternetPayload(dataSaver.readSet(DataSaver.userName),
-						dataSaver.readSet(DataSaver.Password), new ArrayList<Reading>());
+						dataSaver.readSet(DataSaver.Password), new ArrayList<Reading>(), baseInfo);
 
 		if (Debug.DEBUG)
 			Logging.Info("InternetSync.testPassword", "email is " + dataSaver.readSet(DataSaver.userName));
@@ -432,6 +451,7 @@ public class InternetSyncing {
 				List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
 				nameValuePairs.add(new BasicNameValuePair("payload", payload.toString() + "]}"));
 
+				Logging.Info(payload.toString());
 				// Set up send location and send the info
 				DefaultHttpClient client = new DefaultHttpClient();
 				HttpPost post = new HttpPost(POST_URL);

@@ -63,7 +63,7 @@ public class SearchActivity extends ListActivity {
 	/**
 	 * Time to scan for, in seconds
 	 */
-	private static final int SCAN_SECONDS = 10;
+	private static final int SCAN_SECONDS = 30;
 
 	private PostRun postRun;
 

@@ -43,8 +43,8 @@
 
     <!-- Build number must be set in: strings.xml, AndroidManifest, Debug.java -->
     <string name="AboutInfo">www.shugatrak.com \n
-        Version: 1.3.1 \n
-        Build: 345 \n
+        Version: 1.3.2 \n
+        Build: 351 \n
         \u00A9 2014 Applivate, LLC</string>
     <string name="tos">ShugaTrak® Mobile App Terms of Service
 \n\n

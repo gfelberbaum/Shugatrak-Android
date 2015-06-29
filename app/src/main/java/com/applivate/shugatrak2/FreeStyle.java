@@ -105,7 +105,7 @@ public class FreeStyle extends BaseMeter implements MeterInterface {
         resetAdapterPhrase();
 
         if (checkForReadings()) {
-            InternetSyncing.errorDump = "BAD CHECKSUM\n" + receivedData;
+            InternetSyncing.errorDump = "BAD CHECKSUM::" + receivedData.replace("\n","");
         }
 
         return finalReadings.toArray(new String[finalReadings.size()]);
@@ -179,7 +179,7 @@ public class FreeStyle extends BaseMeter implements MeterInterface {
                     Logging.Info("Freestyle.CommunicateWithDevice", "DoSingleReadings.sleep");
                 } catch (Exception ex) {
                     Logging.Error("Freestyle.communicateWithDevice", "EXCEPTION: ", ex);
-                }
+                }//TODO, add a catch for meter unplugged at this point
             }
             while (newInfo);
             Logging.Info("Freestyle.CommunicateWithDevice", "This is the reading" + receivedData);
@@ -210,17 +210,16 @@ public class FreeStyle extends BaseMeter implements MeterInterface {
         }
 
         return processLine(brokenUpPayload[4]);
-        //TODO create actual processing for this, this will fail the program if tried  //  PAUL:  2015-06-23:  Is this TODO comment still valid??
     }
 
     public void doFullDump() {
 
         Logging.Info("Freestyle.doFullDump", "start, sending message");
-        sendCommand(FULL_METER_DUMP);
-        int numberOfResends = 0;
+        int numberOfResends = 0;//Number of resends is for EMPTY  or BAD start ONLY
 
         boolean goodPacket = false;
         while (badGrabCount < 3 && !goodPacket && numberOfResends < 3) {
+        sendCommand(FULL_METER_DUMP);
             // Start While loop
             receivedData = "";
 //            while (connected && (receivedData.equals("") || newInfo) && !repeatData && numberOfResends < 3) {
@@ -249,6 +248,7 @@ public class FreeStyle extends BaseMeter implements MeterInterface {
                 } else if (!receivedData.startsWith("\r\n")) {
                     SystemClock.sleep(1 * SECONDS);
                     receivedData = "";
+                    numberOfResends++;
                     sendCommand(FULL_METER_DUMP);
                     // If there is a decent amount of data
                     // }else if(receivedData.length() > minLength){
@@ -375,6 +375,7 @@ public class FreeStyle extends BaseMeter implements MeterInterface {
         Logging.Verbose("VALUE TO PARSE: [" + valueToParse + "]");
         int realChecksum = Integer.parseInt(valueToParse, 16);  // Paul Sellards:  2015-06-24:  Changed this from Short.parse...  the hex value was overflowing.
 
+        calculatedChecksum = calculatedChecksum%0x10000;//The payload gets to big every now and again, real is only 4 hex digits
         Logging.Verbose("Freestyle.isChecksumValid",
                 "Calculated: " + Integer.toHexString(calculatedChecksum) + "  Real: "
                         + Integer.toHexString(realChecksum));
@@ -401,7 +402,7 @@ public class FreeStyle extends BaseMeter implements MeterInterface {
             } catch (Exception ex) {
                 Logging.Error("Freestyle.isSingleLineChecksumValid", "EXCEPTION: ", ex);
             }
-
+            calculatedChecksum = calculatedChecksum%0x10000;//The payload gets to big every now and again, real is only 4 hex digits
             Logging.Verbose("Freestyle.isSingleLineChecksumValid",
                     "Calculated: " + Integer.toHexString(calculatedChecksum) + "  Real: "
                             + Integer.toHexString(realChecksum));

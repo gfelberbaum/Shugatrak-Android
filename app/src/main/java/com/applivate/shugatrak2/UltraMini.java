@@ -311,7 +311,7 @@ public class UltraMini extends BaseMeter implements MeterInterface{
 				badGrabCount = 0;
 			}else if(!repeatData&&badGrabCount >2){
 				if(Debug.DEBUG)Logging.Info("UltraMini.communicate with device", "KickedByBadChecksum");
-				InternetSyncing.errorDump = "BAD CHECKSUM";
+				InternetSyncing.errorDump = "BAD CHECKSUM::";
 					break;
 			}
 			
@@ -390,7 +390,7 @@ public class UltraMini extends BaseMeter implements MeterInterface{
 		byte[] checkRecord = new byte[ANS_LEN-2];
 		for(int i =0; i<ANS_LEN-2 ; i++)
 			checkRecord[i] = record[i];
-		if (  ( (record[CHECKSUM_LOW_POS]&CLEAR_BYTE) +((record[CHECKSUM_HI_POS]&CLEAR_BYTE)<<8) )  != addChecksum(checkRecord)  ){
+		if (  ( (record[CHECKSUM_LOW_POS]&CLEAR_BYTE) +((record[CHECKSUM_HI_POS]&CLEAR_BYTE)<<8) )  != addChecksum(checkRecord) ){
 
 			if(Debug.DEBUG)Logging.Info("UltraMini.processLine", "did not pass checksum:"+ Integer.toHexString((record[CHECKSUM_LOW_POS]
 					+(((record[CHECKSUM_HI_POS])&CLEAR_BYTE)<<8)))+"  " + Integer.toHexString(addChecksum(checkRecord)));

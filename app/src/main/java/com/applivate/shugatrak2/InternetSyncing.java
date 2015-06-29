@@ -241,13 +241,13 @@ public class InternetSyncing {
 	 */
 	public void SyncData(ArrayList<Reading> readings) {
 		String baseInfo="device_knowledge:";
-		baseInfo += " OS Version: " + System.getProperty("os.version") + "(" + android.os.Build.VERSION.INCREMENTAL + ")";
-		baseInfo += " OS API Level: " + android.os.Build.VERSION.SDK_INT;
-		baseInfo += " Device: " + android.os.Build.DEVICE;
-		baseInfo += " Model (and Product): " + android.os.Build.MODEL + " ("+ android.os.Build.PRODUCT + ")";
-		baseInfo += " manufacturer" + Build.MANUFACTURER;
+		baseInfo += " :::OS Version: " + System.getProperty("os.version") + "(" + android.os.Build.VERSION.INCREMENTAL + ")";
+		baseInfo += " :::OS API Level: " + android.os.Build.VERSION.SDK_INT;
+		baseInfo += " :::Device: " + android.os.Build.DEVICE;
+		baseInfo += " :::Model (and Product): " + android.os.Build.MODEL + " ("+ android.os.Build.PRODUCT + ")";
+		baseInfo += " :::Manufacturer: " + Build.MANUFACTURER;
 		//DEPRECATED: USE getPoint() instead
-		baseInfo+= " has Keyboard: "+ (context.getApplicationContext().getResources().getConfiguration().keyboard != context.getResources().getConfiguration().KEYBOARD_NOKEYS);
+		baseInfo+= " :::Has Keyboard: "+ (context.getApplicationContext().getResources().getConfiguration().keyboard != context.getResources().getConfiguration().KEYBOARD_NOKEYS);
 
 		InternetPayload payload = new InternetPayload(dataSaver.readSet(DataSaver.userName),
 						dataSaver.readSet(DataSaver.Password), readings,baseInfo);
@@ -413,13 +413,13 @@ public class InternetSyncing {
 		Logging.Info("InternetSync.testPassword", "Start Test password");
 
 		String baseInfo="device_knowledge:";
-		baseInfo += " OS Version: " + System.getProperty("os.version") + "(" + android.os.Build.VERSION.INCREMENTAL + ")";
-		baseInfo += " OS API Level: " + android.os.Build.VERSION.SDK_INT;
-		baseInfo += " Device: " + android.os.Build.DEVICE;
-		baseInfo += " Model (and Product): " + android.os.Build.MODEL + " ("+ android.os.Build.PRODUCT + ")";
-		baseInfo += " manufacturer" + Build.MANUFACTURER;
+		baseInfo += " :::OS Version: " + System.getProperty("os.version") + "(" + android.os.Build.VERSION.INCREMENTAL + ")";
+		baseInfo += " :::OS API Level: " + android.os.Build.VERSION.SDK_INT;
+		baseInfo += " :::Device: " + android.os.Build.DEVICE;
+		baseInfo += " :::Model (and Product): " + android.os.Build.MODEL + " ("+ android.os.Build.PRODUCT + ")";
+		baseInfo += " :::manufacturer: " + Build.MANUFACTURER;
 		//DEPRECATED: USE getPoint() instead
-		baseInfo += " has Keyboard: "+ (context.getApplicationContext().getResources().getConfiguration().keyboard != context.getResources().getConfiguration().KEYBOARD_NOKEYS);
+		baseInfo += " ::Has Keyboard: "+ (context.getApplicationContext().getResources().getConfiguration().keyboard != context.getResources().getConfiguration().KEYBOARD_NOKEYS);
 
 
 		InternetPayload payload = new InternetPayload(dataSaver.readSet(DataSaver.userName),

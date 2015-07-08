@@ -143,9 +143,9 @@ public class TopLevelActivity extends Activity {
 		if (datas.readSet(DataSaver.DeviceAddresses).equals(DataSaver.NO_ITEM)) {
 			mViewPager.setCurrentItem(2);
 		} else {
-			Intent serviceIntent = new Intent(this, BleService.class);
-			serviceIntent.putExtra(BleService.DEVICE_ADDRESS, datas.readSet(DataSaver.DeviceAddresses));
-			startService(serviceIntent);
+//			Intent serviceIntent = new Intent(this, BleService.class);
+//			serviceIntent.putExtra(BleService.DEVICE_ADDRESS, datas.readSet(DataSaver.DeviceAddresses));
+//			startService(serviceIntent);
 
 		}
 

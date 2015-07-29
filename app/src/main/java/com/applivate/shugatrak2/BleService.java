@@ -595,7 +595,8 @@ public class BleService extends Service {
         dataSaver.addSet(DataSaver.DeviceAddresses, DeviceMacAddress);
         Logging.Debug("BleService.connect:  Successfully finished the connect method");
         UIConnected = disconPhrase;
-        FragmentMeasurementActivity.updateVisuals(dataSaver.readSet(DataSaver.lastNumber), dataSaver.readSet(DataSaver.lastDate), dataSaver.readSet(DataSaver.lastTime));
+        broadcastUpdate(BaseService.UPDATES);
+//        FragmentMeasurementActivity.updateVisuals(dataSaver.readSet(DataSaver.lastNumber), dataSaver.readSet(DataSaver.lastDate), dataSaver.readSet(DataSaver.lastTime));
         return true;
 
     }

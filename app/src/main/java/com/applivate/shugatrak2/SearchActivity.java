@@ -199,6 +199,7 @@ public class SearchActivity extends ListActivity {
 		if (device.getName().toUpperCase().contains(ADAPTER_NEW_NAME)){
 			(new DataSaver(getApplicationContext())).addSet(DataSaver.NAME_OF_ADAPTER,device.getName());
 			(new DataSaver(getApplicationContext())).setIsKCAdapter(device.getName().split("-")[1].equals(ADAPTER_KC));
+			Logging.Info("the adapter is seen as a KC: " +device.getName().split("-")[1].equals(ADAPTER_KC));
 		}
 		startService(intent);
 		finish();

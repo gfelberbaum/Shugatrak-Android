@@ -546,8 +546,10 @@ public class UltraMini extends BaseMeter implements MeterInterface{
 	}
 
 
-	
-	
+
+	public void unRegister(){
+		unregister();
+	}
 	
 	
 	

@@ -416,7 +416,9 @@ public class FreeStyle extends BaseMeter implements MeterInterface {
 
     }
 
-
+    public void unRegister(){
+        unregister();
+    }
     public boolean hasFullPacket(String info) {
         String[] individualReadings = info.split("\n");
         String endingLine = individualReadings[individualReadings.length - 1];

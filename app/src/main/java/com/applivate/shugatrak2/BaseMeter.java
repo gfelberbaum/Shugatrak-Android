@@ -76,22 +76,22 @@ public abstract class BaseMeter {
      */
     protected boolean connected = false;
 
-    /**
-     * Creates a connection
-     * to the
-     * {@link BleService} class,
-     * which is used to send a
-     * command to the meter
-     */
-    private BleService BleS;
-
-    /**
-     * Sets up and keeps the connection
-     * between this class and the
-     * {@link BleService} class.
-     * will not be able to use
-     */
-    private ServiceConnection mSConnection;
+//    /**
+//     * Creates a connection
+//     * to the
+//     * {@link BleService} class,
+//     * which is used to send a
+//     * command to the meter
+//     */
+//    private BleService BleS;
+//
+//    /**
+//     * Sets up and keeps the connection
+//     * between this class and the
+//     * {@link BleService} class.
+//     * will not be able to use
+//     */
+//    private ServiceConnection mSConnection;
 
     /**
      * Internal flag to make sure that the
@@ -187,35 +187,35 @@ public abstract class BaseMeter {
         Logging.Info("BaseMeter", "start bind");
         Intent gsIntent = new Intent(c, BleService.class);
 
-        mSConnection = new ServiceConnection() {
+//        mSConnection = new ServiceConnection() {
+//
+//            @Override
+//            public void onServiceDisconnected(ComponentName name) {
+//                BleS = null;
+//
+//            }
+//
+//            @Override
+//            public void onServiceConnected(ComponentName name, IBinder service) {
+//                BleS = ((BleService.LocalBinder) service).getService();
+//                bound = true;
+//                Logging.Info("BaseMeter.onServiceConnected", "just made the connect mSConnection");
+//
+//                if (!BleS.initialize()) {
+//                    Logging.Info("BaseMeter.onServiceConnected", "unable to initialize");
+//                }
+//
+//            }
+//        };
 
-            @Override
-            public void onServiceDisconnected(ComponentName name) {
-                BleS = null;
-
-            }
-
-            @Override
-            public void onServiceConnected(ComponentName name, IBinder service) {
-                BleS = ((BleService.LocalBinder) service).getService();
-                bound = true;
-                Logging.Info("BaseMeter.onServiceConnected", "just made the connect mSConnection");
-
-                if (!BleS.initialize()) {
-                    Logging.Info("BaseMeter.onServiceConnected", "unable to initialize");
-                }
-
-            }
-        };
-
-        if (context.bindService(gsIntent, mSConnection, Context.BIND_AUTO_CREATE)) {
-            Logging.Info("basemeter constructor", "successful bind");
-        }
+//        if (context.bindService(gsIntent, mSConnection, Context.BIND_AUTO_CREATE)) {
+//            Logging.Info("basemeter constructor", "successful bind");
+//        }
 
         //END BIND
 
         //wait for binding to settle
-        while (!bound) ;
+//        while (!bound) ;
 
     }
 
@@ -260,6 +260,10 @@ public abstract class BaseMeter {
 
     }
 
+
+
+    public static final String justSayConnected="VISUALS SHOULD JUST SAY CONNECTED";
+
     /**
      * Destroys the register to the {@link BleService}.
      * Needs to be called if creation has been.
@@ -267,8 +271,13 @@ public abstract class BaseMeter {
      * to be ready to switch to a normal
      * connected/disconnected mode
      */
-    protected void resetAdapterPhrase() {
-        BleS.justSayConnected();
+    protected void resetAdapterPhrase()
+    {
+        Intent intent = new Intent (justSayConnected);
+     context.sendBroadcast(intent);
+
+
+//        BleS.justSayConnected();
     }
 
     /**
@@ -301,7 +310,7 @@ public abstract class BaseMeter {
      * but ready regardless
      */
     protected void endCon() {
-        BleS.unbindService(mSConnection);
+//        BleS.unbindService(mSConnection);
         Logging.Info("BaseMeter.endCon", "Ended the connection between meter classes and BleService");
     }
 
@@ -316,10 +325,17 @@ public abstract class BaseMeter {
      *                the Ble Adapter, to the meter
      */
     protected void sendCommand(byte[] command) {
-        Logging.Debug("BaseMeter.sendcommand", command + " byte size: " + command.length);
+        Logging.Debug("BaseMeter.sendcommand", command + new String(command)+ " byte size: " + command.length);
 
-        BleS.writeCharacteristic(command);
+
+        Intent intent = new Intent(WRITE_COMMAND);
+        intent.putExtra(BleService.A_EXTRA_DATA, command);
+
+//        BleS.writeCharacteristic(command);
+        context.sendBroadcast(intent);
     }
+
+    public static final String WRITE_COMMAND = "BLE SHOULD WRITE COMMAND TO CHARACTERISTIC";
 
     /**
      * Checks the strings passed into it with strings that
@@ -454,6 +470,13 @@ public abstract class BaseMeter {
             }
         }
     }
+
+
+    protected void unregister(){
+        deleteRegister();
+
+    }
+
 
     public void createNotification(int stringResourceId, int soundId, boolean toastAlso) {
         String notifyText = this.context.getResources().getString(stringResourceId);

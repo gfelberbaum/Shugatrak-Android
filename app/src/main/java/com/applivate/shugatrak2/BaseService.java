@@ -319,8 +319,13 @@ public class BaseService extends IntentService {
 //                    sendBroadcast(toastIntent);
                 }
 
+
                 if(!dataSaver.isKCadapter())
                 meter.listenForWakeUpString();
+                else{
+                    meter.unRegister();
+                    meter = null;
+                }
 
 
             }
@@ -563,6 +568,7 @@ public class BaseService extends IntentService {
         //	upload payload (make seperate method to do so)VVVVVVVVVVVVVVvv
         //	notify userVVVVVVVVVVVVVVVVVVV
         //	start the listeningModule?????
+        meter = null;
 
     }
 }

@@ -214,6 +214,11 @@ public class BleService extends Service {
             }else if(action.equals(getNewReadings)){
                 if(isDisconnected)
                     connect((new DataSaver(getApplicationContext())).readSet(DataSaver.DeviceAddresses));
+            }else if (action.equals(BaseMeter.justSayConnected)){
+                justSayConnected();
+            }else if (action.equals(BaseMeter.WRITE_COMMAND)){
+                Logging.Debug("BleService.OnReceive -> in write command");
+                writeCharacteristic(intent.getByteArrayExtra(A_EXTRA_DATA));
             }
 
         }
@@ -234,6 +239,8 @@ public class BleService extends Service {
         intentFilter.addAction(SEARCH_DISCONNECT);
         intentFilter.addAction(getNewReadings);
         intentFilter.addAction(BaseService.ENDING_READINGS);
+        intentFilter.addAction(BaseMeter.justSayConnected);
+        intentFilter.addAction(BaseMeter.WRITE_COMMAND);
         return intentFilter;
     }
 
@@ -347,7 +354,8 @@ public class BleService extends Service {
         }
 
         public void run() {
-            Logging.Debug("BleService.run-> Has Started Timer:"+intent.getBooleanExtra(hasStartedTimer,false)+" and is KC:" + (new DataSaver(getApplicationContext())).isKCadapter());
+            Logging.Debug("BleService.run->"
+                    + (new DataSaver(getApplicationContext())).isKCadapter());
             if (intent != null)
                 DeviceMacAddress = intent.getStringExtra(DEVICE_ADDRESS);
             else

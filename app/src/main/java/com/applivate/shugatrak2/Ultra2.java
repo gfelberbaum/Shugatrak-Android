@@ -113,6 +113,8 @@ public class Ultra2 extends BaseMeter implements MeterInterface {
 	protected void onNewData(byte[] byteArrayExtra) {
 		//OVERRIDDEN FROM ABSTRACT
 		if(Debug.DEBUG)Logging.Info("Ultra2.OnNewData", new String(byteArrayExtra) + " " +byteArrayExtra);
+		for(byte aByte:byteArrayExtra)
+		Logging.Info("Ultra2.OnNewData [" +aByte +"]" );
 		receivedData+= new String(byteArrayExtra);
 	}
 
@@ -174,7 +176,8 @@ public class Ultra2 extends BaseMeter implements MeterInterface {
 		process(receivedData);
 
 		resetAdapterPhrase();
-		
+		//////////////////////////////////
+
 		if(checkForReadings()){
 			InternetSyncing.errorDump="BAD CHECKSUM\n" + receivedData;
 		}
@@ -358,7 +361,9 @@ public class Ultra2 extends BaseMeter implements MeterInterface {
 	}
 
 
-
+	public void unRegister(){
+		unregister();
+	}
 	
 	/**
 	 * Wake up string used to be checked against the bytes 

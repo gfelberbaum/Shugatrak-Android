@@ -50,7 +50,7 @@ public interface MeterInterface {
 	 */
 	public String[] communicateWithDevice();
 	
-	
+	public void unRegister();
 	
 	/**
 	 * This command is used at the end of {@link BaseService}'s

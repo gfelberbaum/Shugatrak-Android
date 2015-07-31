@@ -129,6 +129,9 @@ public class BaseService extends IntentService {
     private static final String neverReceivedAnything = "Unable to communicate with meter";
 
 
+    public static boolean processing;
+
+
     public static boolean badChecksumFlag;
 
 
@@ -146,7 +149,11 @@ public class BaseService extends IntentService {
         //called after discovered services
 
         //get rid of the process that might have started before this one
-        if (runCheck.isAlive()) runCheck.stop();//TODO
+        if (processing){
+            Logging.Debug("BaseService.OnHandleIntent -> force stopping a thread");
+//            runCheck.stop();//TODO
+            return;
+        }
         //If this is only a retry, it gets handled here.
         if (intent.getAction() == RETRY_UPLOAD) {//TODO leaving it as a == because the intent might be null, and it will be pointing to the same place
             CreateJsonTask task = new CreateJsonTask();
@@ -253,6 +260,7 @@ public class BaseService extends IntentService {
     Thread runCheck = new Thread() {
         @Override
         public void run() {
+            processing = true;
             String[] returnInfo;
             MeterInterface meter;
 
@@ -276,6 +284,7 @@ public class BaseService extends IntentService {
             Intent endReadings = new Intent(ENDING_READINGS);
             sendBroadcast(endReadings);
 
+
             Logging.Info("BaseService.onHandleRequest:  Ended communication");
 
             //NOTE: SAVING THE MOST RECENT READING AND DISPLAYING ON
@@ -283,7 +292,8 @@ public class BaseService extends IntentService {
 
             if (badChecksumFlag) {
                 Logging.Error("BaseService.onHandleIntent  Had bad checksum error with " + meter + ", running alternate route");
-                badChecksumErrorHandling(returnInfo, meter, "Bad Checksum");
+                badChecksumErrorHandling(returnInfo, "Bad Checksum");
+                meter = null;
                 return;
             }
 
@@ -320,12 +330,21 @@ public class BaseService extends IntentService {
                 }
 
 
-                if(!dataSaver.isKCadapter())
-                meter.listenForWakeUpString();
-                else{
+                if(!dataSaver.isKCadapter()) {
+//                    meter.listenForWakeUpString();
+                }else{
                     meter.unRegister();
-                    meter = null;
                 }
+
+                ///TODO Currently, the call does not make it here until after meter.listenForWakeUpString() is completed. That may be too long
+                    meter = null;
+
+                Logging.Info("BaseService.onHandleIntent.runCheck -> Past making the meter null");
+
+
+                processing = false;
+
+                return;
 
 
             }
@@ -525,7 +544,7 @@ public class BaseService extends IntentService {
 
     //TODO write the javadoc
 
-    public void badChecksumErrorHandling(String[] returnInfo, MeterInterface meter, String errorReason) {
+    public void badChecksumErrorHandling(String[] returnInfo, String errorReason) {
 
 
         ArrayList<Reading> readings = new ArrayList<>();
@@ -568,7 +587,6 @@ public class BaseService extends IntentService {
         //	upload payload (make seperate method to do so)VVVVVVVVVVVVVVvv
         //	notify userVVVVVVVVVVVVVVVVVVV
         //	start the listeningModule?????
-        meter = null;
 
     }
 }

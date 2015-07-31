@@ -304,6 +304,11 @@ public class FragmentMeasurementActivity extends Fragment {
 
 
     synchronized void handleTouch(MotionEvent m) {
+
+        if(BaseService.processing){
+            return;
+        }
+
         //Number of touches
         int pointerCount = m.getPointerCount();
         if (pointerCount != 0) {

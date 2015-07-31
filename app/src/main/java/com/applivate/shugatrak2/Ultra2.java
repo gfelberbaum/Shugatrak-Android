@@ -112,9 +112,11 @@ public class Ultra2 extends BaseMeter implements MeterInterface {
 	
 	protected void onNewData(byte[] byteArrayExtra) {
 		//OVERRIDDEN FROM ABSTRACT
-		if(Debug.DEBUG)Logging.Info("Ultra2.OnNewData", new String(byteArrayExtra) + " " +byteArrayExtra);
+		String holder = "";
 		for(byte aByte:byteArrayExtra)
-		Logging.Info("Ultra2.OnNewData [" +aByte +"]" );
+		holder += "[" +aByte+"] " ;
+		if(Debug.DEBUG)Logging.Info("Ultra2.OnNewData", new String(byteArrayExtra) + " " +byteArrayExtra + ":::: " +holder);
+
 		receivedData+= new String(byteArrayExtra);
 	}
 

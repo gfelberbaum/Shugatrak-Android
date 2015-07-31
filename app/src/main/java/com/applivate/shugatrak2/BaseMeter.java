@@ -442,7 +442,7 @@ public abstract class BaseMeter {
             //wait while connected
             while (connected) {
                 SystemClock.sleep(SLEEP * SECONDS);
-                //					if(Debug.DEBUG)Logging.Info("BaseMeter.WakeUpOnThisString.doInBackground", "Array: " +buffer.toString());
+                					if(Debug.DEBUG)Logging.Info("BaseMeter.WakeUpOnThisString.doInBackground", "Array: " +buffer.toString());
                 //break out of the loop if you find the wake up string
                 if ((new String(buffer.toByteArray()).contains(wakeUpString))) {
                     active = true;

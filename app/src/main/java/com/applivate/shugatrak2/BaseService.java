@@ -305,6 +305,8 @@ public class BaseService extends IntentService {
                 //SEND INFO UPWARDS USING RETURN INFO
                 CreateJsonTask task = new CreateJsonTask();
                 task.execute(returnInfo);
+                Logging.Info("BaseService.onHandleIntent.runCheck -> making return information");
+
             } else {
                 Logging.Info("BaseService.onHandleRequest:  No new Information");
                 //If it got here, and is not connected currently, most likely BLE timeout, Needs to be fixed by user
@@ -330,11 +332,16 @@ public class BaseService extends IntentService {
                 }
 
 
+
+            }
+                Logging.Info("BaseService.onHandleIntent.runCheck -> just before where KC is ");
+
                 if(!dataSaver.isKCadapter()) {
 //                    meter.listenForWakeUpString();
                 }else{
-                    meter.unRegister();
                 }
+                    meter.unRegister();
+                Logging.Info("BaseService.onHandleIntent.runCheck -> before making the meter null");
 
                 ///TODO Currently, the call does not make it here until after meter.listenForWakeUpString() is completed. That may be too long
                     meter = null;
@@ -345,9 +352,6 @@ public class BaseService extends IntentService {
                 processing = false;
 
                 return;
-
-
-            }
         }
 
     };

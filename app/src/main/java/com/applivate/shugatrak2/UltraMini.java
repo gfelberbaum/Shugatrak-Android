@@ -301,6 +301,7 @@ public class UltraMini extends BaseMeter implements MeterInterface{
 		byte[] getRecord = null;
 		int offset = 0;
 		goodReading = true;
+		int numberOfRetries = 0;
 		
 		while(connected && !repeatData && !pastLast && badGrabCount<3){//START WHILE////////////
 			if(goodReading){
@@ -332,7 +333,7 @@ public class UltraMini extends BaseMeter implements MeterInterface{
 			tmoTimer task = new tmoTimer();
 			TMOFlag = false;
 			Timer time = new Timer();
-			time.schedule(task, (long)(TMO_TIME_OUT*SECONDS));
+			time.schedule(task, (long) (TMO_TIME_OUT * SECONDS));
 			
 			try{//Start try
 				do{//Start dohwhile
@@ -345,7 +346,15 @@ public class UltraMini extends BaseMeter implements MeterInterface{
 			}//end try Catch
 			
 			time.cancel();
-			
+
+			if(receivedInfo.size() == 0){
+				numberOfRetries++;
+				if(numberOfRetries ==3){
+					createNotification(R.string.meter_not_responding, R.raw.failure_sound, true);
+					meterNotResponding=true;
+					break;
+				}
+			}
 
 			if(receivedInfo.size() != 0  && !junkCharFlag){
 				sendCommand(ACKNOWLEDGE);

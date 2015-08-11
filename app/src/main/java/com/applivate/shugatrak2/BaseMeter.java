@@ -147,6 +147,8 @@ public abstract class BaseMeter {
 
     protected boolean alreadyHaveInfo;
 
+    public static boolean meterNotResponding;
+
     protected String bgl;
     protected String date;
     protected String time;
@@ -175,6 +177,7 @@ public abstract class BaseMeter {
         buffer = new ByteArrayOutputStream();
         this.signature = signature;
         badGrabCount = 0;
+        meterNotResponding=false;
 
         bgl = (dataSaver.readSet(DataSaver.lastNumber));
         date = (dataSaver.readSet(DataSaver.lastDate));
@@ -476,6 +479,7 @@ public abstract class BaseMeter {
         deleteRegister();
 
     }
+
 
 
     public void createNotification(int stringResourceId, int soundId, boolean toastAlso) {

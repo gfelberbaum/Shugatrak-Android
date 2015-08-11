@@ -136,7 +136,7 @@ public class Ultra2 extends BaseMeter implements MeterInterface {
 		int resendOrWakeup = 0;
 		
 		//Start while loop
-		while( connected && (receivedData.equals("") || newInfo) && !repeatData && badGrabCount<3 ){
+		while( connected && (receivedData.equals("") || newInfo) && !repeatData && badGrabCount<3 &&numberResends<3 ){
 			Logging.Info("Ultra2.communicate with device", "New loop");
 
 			//set the new info flag false, it should either
@@ -149,6 +149,13 @@ public class Ultra2 extends BaseMeter implements MeterInterface {
 
 
 			if(receivedData.equals("")){
+
+				if(numberResends==2){
+					createNotification(R.string.meter_not_responding, R.raw.failure_sound, true);
+					meterNotResponding=true;
+					break;
+
+				}
 
 				//If there is nothing back
 				//try one more time the normal command

@@ -154,6 +154,8 @@ public class FreeStyle extends BaseMeter implements MeterInterface {
 
 
     public void doSingleReadings() {
+        int numberOfResends = 0;//Number of resends is for EMPTY  or BAD start ONLY
+
         Logging.Info("Freestyle.CommunicateWithDevice", "DoSingleReadings - START");
 
         try {
@@ -164,7 +166,7 @@ public class FreeStyle extends BaseMeter implements MeterInterface {
 
         int readingToGrab = 1;
 
-        while (connected && !repeatData && badGrabCount < 3) {
+        while (connected && !repeatData && badGrabCount < 3 && numberOfResends < 3) {
             byte[] readingCommand = (SINGLE_LINE + readingToGrab + "\r\n").getBytes();
 
             Logging.Info("Freestyle.CommunicateWithDevice", "DoSingleReadings.presend");
@@ -183,6 +185,15 @@ public class FreeStyle extends BaseMeter implements MeterInterface {
             }
             while (newInfo);
             Logging.Info("Freestyle.CommunicateWithDevice", "This is the reading" + receivedData);
+
+            if(receivedData.equals("")){
+                numberOfResends++;
+                if(numberOfResends == 2){
+                    createNotification(R.string.meter_not_responding, R.raw.failure_sound, true);
+                    meterNotResponding=true;
+                }
+                continue;
+            }
 
             if (singleReadingProcessing(receivedData)) {
                 //DO PROCESSING HERE
@@ -223,7 +234,7 @@ public class FreeStyle extends BaseMeter implements MeterInterface {
             // Start While loop
             receivedData = "";
 //            while (connected && (receivedData.equals("") || newInfo) && !repeatData && numberOfResends < 3) {
-            while (connected && (receivedData.equals("") || newInfo) && !repeatData) {
+            while (connected && (receivedData.equals("") || newInfo) && !repeatData&& numberOfResends < 3) {
                 Logging.Info("Freestyle.communicate with device", "New loop");
 
                 if (2 == numberOfResends) {

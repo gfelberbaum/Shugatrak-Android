@@ -293,7 +293,9 @@ public class BaseService extends IntentService {
             if (badChecksumFlag) {
                 Logging.Error("BaseService.onHandleIntent  Had bad checksum error with " + meter + ", running alternate route");
                 badChecksumErrorHandling(returnInfo, "Bad Checksum");
+                meter.unRegister();
                 meter = null;
+                processing=false;
                 return;
             }
 
@@ -310,31 +312,28 @@ public class BaseService extends IntentService {
             } else {
                 Logging.Info("BaseService.onHandleRequest:  No new Information");
                 //If it got here, and is not connected currently, most likely BLE timeout, Needs to be fixed by user
-                if (!BleService.connected) {
-                    createGotNothingNotification();
-                } else {
+                if (!BaseMeter.meterNotResponding&&BleService.connected) {
                     Logging.Info("BaseService.onHandleRequest:  No new Information");
 
-//                        Notification.Builder notificationBuilder = new Notification.Builder(getApplicationContext())
-//                                .setSmallIcon(R.drawable.notification_icon_1)//Action Bar icon for the notification
-//                                .setContentTitle("ShugaTrak")//Title for notification
-//                                .setContentText("No readings obtained from meter")// body of text for notification
-//                                        //		.setStyle( new Notification.BigTextStyle().bigText(finalString))//makes the drop down if there is more
-//                                .setAutoCancel(true)//gets rid of when clicked
-////                                .setContentIntent(notifPendingIntent)// makes the place when you clicked, as specified above
-//                                .setTicker("No readings obtained from meter")//what shows up quickly at the top of the not. bar
-//                                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher))// makes the main icon, on the left
-//                                ;
-//                    ((NotificationManager) getApplicationContext().getSystemService(NOTIFICATION_SERVICE)).notify(1, notificationBuilder.build());
-//                    Intent toastIntent = new Intent(MAKE_TOAST);
-//                    toastIntent.putExtra(TOAST_EXTRA, "No readings obtained from meter");
-//                    sendBroadcast(toastIntent);
+                        Notification.Builder notificationBuilder = new Notification.Builder(getApplicationContext())
+                                .setSmallIcon(R.drawable.notification_icon_1)//Action Bar icon for the notification
+                                .setContentTitle("ShugaTrak")//Title for notification
+                                .setContentText("No readings obtained from meter")// body of text for notification
+                                        //		.setStyle( new Notification.BigTextStyle().bigText(finalString))//makes the drop down if there is more
+                                .setAutoCancel(true)//gets rid of when clicked
+//                                .setContentIntent(notifPendingIntent)// makes the place when you clicked, as specified above
+                                .setTicker("No readings obtained from meter")//what shows up quickly at the top of the not. bar
+                                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher))// makes the main icon, on the left
+                                ;
+                    ((NotificationManager) getApplicationContext().getSystemService(NOTIFICATION_SERVICE)).notify(1, notificationBuilder.build());
+                    Intent toastIntent = new Intent(MAKE_TOAST);
+                    toastIntent.putExtra(TOAST_EXTRA, "No readings obtained from meter");
+                    sendBroadcast(toastIntent);
                 }
 
 
-
             }
-                Logging.Info("BaseService.onHandleIntent.runCheck -> just before where KC is ");
+            Logging.Info("BaseService.onHandleIntent.runCheck -> just before where KC is ");
 
                 if(!dataSaver.isKCadapter()) {
 //                    meter.listenForWakeUpString();

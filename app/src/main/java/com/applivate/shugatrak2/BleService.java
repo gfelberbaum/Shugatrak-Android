@@ -109,14 +109,14 @@ public class BleService extends Service {
     /**
      * no longer connected to the adapter
      */
-    private static String disconPhrase = "adapter is set up";  //  R.string.adapter_is_set_up
+    public static String disconPhrase = "adapter is set up";  //  R.string.adapter_is_set_up
     /**
      * completely connected to the adapter
      */
     private static String servicePhase = "communicating with adapter";  //R.string.connected_to_adapter
     ///////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////
-    private static String NO_CONNECTION_PHRASE = "adapter is not set up";// R.string.adapter_not_set_up
+    public static String NO_CONNECTION_PHRASE = "adapter is not set up";// R.string.adapter_not_set_up
     public static String REQUESTING_READINGS = "requesting readings";  //  R.string.requesting_readings
     public static String NOT_CONNECTED = "Bluetooth is off";  //  R.string.bluetooth_is_off
 
@@ -178,6 +178,9 @@ public class BleService extends Service {
     public static boolean connected = false;
 
 
+    public static boolean BluetoothIsOn=false;
+
+
     private void initializeFromResourceStrings(Context context) {
 
         GETTING_READINGS = context.getResources().getString(R.string.transferring_readings);
@@ -188,6 +191,7 @@ public class BleService extends Service {
         NOT_CONNECTED = context.getResources().getString(R.string.adapter_is_set_up) + " ";
         servicePhase = context.getResources().getString(R.string.connected_to_adapter);
 //		NOT_CONNECTED = context.getResources().getString(R.string.bluetooth_is_off);
+        BluetoothIsOn=true;
     }
 
 
@@ -277,6 +281,7 @@ public class BleService extends Service {
                 Intent updateIntent = new Intent(BaseService.UPDATES);
                 sendBroadcast(updateIntent);
 
+                BluetoothIsOn=false;
 //				Intent intent = new Intent()
 //				TextView errorText = (TextView) rootView.findViewById(R.id.errorCodeTextView);
 //				errorText.setText(R.string.bluetooth_is_off);
@@ -289,8 +294,10 @@ public class BleService extends Service {
 
                 //Update with the front screen the status of the front screen
                 UIConnected = disconPhrase;
+                BluetoothIsOn = true;
                 Intent updateIntent = new Intent(BaseService.UPDATES);
                 sendBroadcast(updateIntent);
+
 
                 stopForeground(true);
                 DeviceMacAddress = (new DataSaver(getApplicationContext())).readSet(DataSaver.DeviceAddresses);
@@ -596,14 +603,15 @@ public class BleService extends Service {
         }
 
         isDisconnected = false;
-        final BluetoothDevice device = BleA.getRemoteDevice(address);
+        UIConnected = disconPhrase;
+        broadcastUpdate(BaseService.UPDATES);
 
+
+        final BluetoothDevice device = BleA.getRemoteDevice(address);
         BleG = device.connectGatt(this, AUTO_CONNECT, callback);
         DeviceMacAddress = address;
         dataSaver.addSet(DataSaver.DeviceAddresses, DeviceMacAddress);
         Logging.Debug("BleService.connect:  Successfully finished the connect method");
-        UIConnected = disconPhrase;
-        broadcastUpdate(BaseService.UPDATES);
 //        FragmentMeasurementActivity.updateVisuals(dataSaver.readSet(DataSaver.lastNumber), dataSaver.readSet(DataSaver.lastDate), dataSaver.readSet(DataSaver.lastTime));
         return true;
 

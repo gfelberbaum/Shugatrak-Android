@@ -13,6 +13,8 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.app.TimePickerDialog;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothManager;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
@@ -153,8 +155,8 @@ public class TopLevelActivity extends Activity {
 			checkTerms();
 		}
 
-	}
 
+	}
 	/**
 	 * Makes a listener that will connect the A.Bar tabs, and the swipes
 	 */
@@ -228,6 +230,9 @@ public class TopLevelActivity extends Activity {
 		TextView meterType = (TextView) findViewById(R.id.MeterType);
 
 		meterType.setText(datas.readSet(DataSaver.meterType));
+		if(!datas.readSet(DataSaver.meterType).equals(DataSaver.NO_ITEM)){
+			((Button) findViewById(R.id.cnmtButton)).setText("Change Meter");
+		}
 	}
 
 	/**

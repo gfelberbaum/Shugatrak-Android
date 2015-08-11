@@ -2,13 +2,14 @@ package com.applivate.shugatrak2;
 
 import android.app.AlertDialog;
 import android.app.Fragment;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -22,6 +23,11 @@ import android.widget.Toast;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothManager;
+
 
 /**
  * *************************************************************************
@@ -88,7 +94,6 @@ public class FragmentMeasurementActivity extends Fragment {
         editConnection.setText(BleService.UIConnected);
         retryUploadButton = (Button) rootView.findViewById(R.id.retryButton);
 
-
         editAdapterOn = ((TextView) rootView.findViewById(R.id.adapter_is_on));
         loading = (ProgressBar) rootView.findViewById(R.id.indicate_transferring_readings);
 
@@ -119,6 +124,8 @@ public class FragmentMeasurementActivity extends Fragment {
         updateVisuals(dataSaver.readSet(DataSaver.lastNumber),
                 dataSaver.readSet(DataSaver.lastDate),
                 dataSaver.readSet(DataSaver.lastTime));
+
+
         getActivity().registerReceiver(rec, filter());// set up the filter
 
     }
@@ -166,6 +173,7 @@ public class FragmentMeasurementActivity extends Fragment {
         bloodGlucoseLevel = getDefaultText(bloodGlucoseLevel, "[BG]");
         date = getDefaultText(date, "[date]");
         time = getDefaultText(time, "[time]");
+        editAdapterOn.setVisibility(View.INVISIBLE);
 
         if (!date.equals("[date]")) {
             SimpleDateFormat original = new SimpleDateFormat(
@@ -183,6 +191,10 @@ public class FragmentMeasurementActivity extends Fragment {
         editBloodLevel.setText(checkHiOrLo(bloodGlucoseLevel));
         editDate.setText(date);
         editTime.setText(time);
+        if (!getDefaultText(DataSaver.DeviceAddresses,"").isEmpty() &&BleService.UIConnected.equals(BleService.NO_CONNECTION_PHRASE) ){
+            BleService.UIConnected = BleService.disconPhrase;
+
+        }
         editConnection.setText(BleService.UIConnected);
 
         if (loading != null) {

@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
 import android.widget.TextView;
 
 /**
@@ -111,6 +112,9 @@ public class FragmentSettingsActivity extends Fragment {
                 .readSet(DataSaver.meterType).equals(DataSaver.NO_ITEM));
         ((TextView) rootView.findViewById(R.id.stmtButton)).setEnabled(!data
                 .readSet(DataSaver.meterType).equals(DataSaver.NO_ITEM));
+        if(!data.readSet(DataSaver.meterType).equals(DataSaver.NO_ITEM)){
+            ((Button)rootView.findViewById(R.id.cnmtButton)).setText("Change Meter");
+        }
     }
 
     /**

@@ -52,6 +52,8 @@ public class InternetPayload {
 
 	private String versionCode = Debug.VERSION_NUMBER;
 
+	private String VersionName = ""+Debug.VERSION_CODE;
+
 
 	public String errors;
 	private String baseInfo;
@@ -91,15 +93,15 @@ public class InternetPayload {
 			returnString =
 					"{\"email\":\"" + email +
 					"\",\"password\":\"" + password +
-					"\",\"app_version\":\"" + versionCode+
+					"\",\"app_version\":\"a, " + versionCode +"/ "+VersionName+
 					"\",\"mobile_device_info\":\"" + baseInfo+
 					"\",\"readings\":" + readings;
 		else{
 
 			returnString = "{\"email\":\"" + email +
 					"\",\"password\":\"" + password +
-					"\",\"Error\":\"" + errors +
-					"\",\"app_version\":\"" + versionCode+
+					"\",\"meter_error_dump\":\"" + errors +
+					"\",\"app_version\":\"a, " + versionCode+" / "+VersionName+
 					"\",\"mobile_device_info\":\"" + baseInfo+
 					"\",\"readings\":" + readings;
 		}

@@ -47,7 +47,11 @@ public class SystemReceiver extends BroadcastReceiver {
 					Intent selfLaunch = new Intent(context, BleService.class);
 					selfLaunch.putExtra(BleService.DEVICE_ADDRESS, address);
 					context.startService(selfLaunch);
-				}
+				 BleService.BluetoothIsOn = true;
+				 Intent updateIntent = new Intent(BaseService.UPDATES);
+				 context.sendBroadcast(updateIntent);
+
+			 }
 			}
 	}
 

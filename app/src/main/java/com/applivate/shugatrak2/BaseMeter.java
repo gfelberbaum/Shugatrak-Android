@@ -148,6 +148,7 @@ public abstract class BaseMeter {
     protected boolean alreadyHaveInfo;
 
     public static boolean meterNotResponding;
+    private boolean changeFromRequestingToTransferring;
 
     protected String bgl;
     protected String date;
@@ -178,6 +179,7 @@ public abstract class BaseMeter {
         this.signature = signature;
         badGrabCount = 0;
         meterNotResponding=false;
+        changeFromRequestingToTransferring=false;
 
         bgl = (dataSaver.readSet(DataSaver.lastNumber));
         date = (dataSaver.readSet(DataSaver.lastDate));
@@ -246,6 +248,11 @@ public abstract class BaseMeter {
                     buffer.write(byteVal);
 //					Logging.Verbose("BaseMeter.onReceive", Integer.toHexString((byteVal)));
 
+                }
+
+                if (!changeFromRequestingToTransferring){
+                    changeFromRequestingToTransferring=true;
+                    update();
                 }
             }
 
@@ -369,25 +376,30 @@ public abstract class BaseMeter {
      */
     protected void update() {
         //save information first
-        dataSaver.addSet(DataSaver.lastNumber, finalReadings.get(0));
-        dataSaver.addSet(DataSaver.lastDate, finalReadings.get(1));
-        dataSaver.addSet(DataSaver.lastTime, finalReadings.get(2));
+        if(!finalReadings.isEmpty()) {
+            dataSaver.addSet(DataSaver.lastNumber, finalReadings.get(0));
+            dataSaver.addSet(DataSaver.lastDate, finalReadings.get(1));
+            dataSaver.addSet(DataSaver.lastTime, finalReadings.get(2));
+        }
         BleService.UIConnected = BleService.GETTING_READINGS;
 
-        try {
-            Handler han = new Handler(context.getMainLooper());
-            han.post(new Runnable() {
+        Intent intent = new Intent(BaseService.UPDATES);
+        context.sendBroadcast(intent);
 
-                @Override
-                public void run() {
-                    FragmentMeasurementActivity.updateVisuals(finalReadings.get(0), finalReadings.get(1), finalReadings.get(2));
-
-                }
-
-            });
-        } catch (Exception ex) {
-            Logging.Error(this.getClass().getSimpleName(), "EXCEPTION: ", ex);
-        }
+//        try {
+//            Handler han = new Handler(context.getMainLooper());
+//            han.post(new Runnable() {
+//
+//                @Override
+//                public void run() {
+//                    FragmentMeasurementActivity.updateVisuals(finalReadings.get(0), finalReadings.get(1), finalReadings.get(2));
+//
+//                }
+//
+//            });
+//        } catch (Exception ex) {
+//            Logging.Error(this.getClass().getSimpleName(), "EXCEPTION: ", ex);
+//        }
     }
 
 

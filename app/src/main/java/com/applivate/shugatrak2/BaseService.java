@@ -412,7 +412,9 @@ public class BaseService extends IntentService {
         PendingIntent notifPendingIntent = PendingIntent.getActivity(context, 0, notifIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         //Set up default bad answer, instead of using else
-        Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        Uri soundUri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + context.getPackageName() + "/" + R.raw.failure_sound);
+// RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+
         String finalString = InternetSyncing.portalErrorString;
 
         //Set up an S to make the message plural

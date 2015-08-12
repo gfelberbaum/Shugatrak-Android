@@ -310,22 +310,26 @@ public class BaseService extends IntentService {
                 Logging.Info("BaseService.onHandleIntent.runCheck -> making return information");
 
             } else {
+
+
                 Logging.Info("BaseService.onHandleRequest:  No new Information");
-                //If it got here, and is not connected currently, most likely BLE timeout, Needs to be fixed by user
                 if (!BaseMeter.meterNotResponding&&BleService.connected) {
+                if(!TopLevelActivity.isActive){
+                //If it got here, and is not connected currently, most likely BLE timeout, Needs to be fixed by user
                     Logging.Info("BaseService.onHandleRequest:  No new Information");
 
-                        Notification.Builder notificationBuilder = new Notification.Builder(getApplicationContext())
-                                .setSmallIcon(R.drawable.notification_icon_1)//Action Bar icon for the notification
-                                .setContentTitle("ShugaTrak")//Title for notification
-                                .setContentText("No readings obtained from meter")// body of text for notification
-                                        //		.setStyle( new Notification.BigTextStyle().bigText(finalString))//makes the drop down if there is more
-                                .setAutoCancel(true)//gets rid of when clicked
+                    Notification.Builder notificationBuilder = new Notification.Builder(getApplicationContext())
+                            .setSmallIcon(R.drawable.notification_icon_1)//Action Bar icon for the notification
+                            .setContentTitle("ShugaTrak")//Title for notification
+                            .setContentText("No readings obtained from meter")// body of text for notification
+                                    //		.setStyle( new Notification.BigTextStyle().bigText(finalString))//makes the drop down if there is more
+                            .setAutoCancel(true)//gets rid of when clicked
 //                                .setContentIntent(notifPendingIntent)// makes the place when you clicked, as specified above
-                                .setTicker("No readings obtained from meter")//what shows up quickly at the top of the not. bar
-                                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher))// makes the main icon, on the left
-                                ;
+                            .setTicker("No readings obtained from meter")//what shows up quickly at the top of the not. bar
+                            .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher))// makes the main icon, on the left
+                            ;
                     ((NotificationManager) getApplicationContext().getSystemService(NOTIFICATION_SERVICE)).notify(1, notificationBuilder.build());
+                }
                     Intent toastIntent = new Intent(MAKE_TOAST);
                     toastIntent.putExtra(TOAST_EXTRA, "No readings obtained from meter");
                     sendBroadcast(toastIntent);
@@ -335,14 +339,10 @@ public class BaseService extends IntentService {
             }
             Logging.Info("BaseService.onHandleIntent.runCheck -> just before where KC is ");
 
-                if(!dataSaver.isKCadapter()) {
-//                    meter.listenForWakeUpString();
-                }else{
-                }
+
                     meter.unRegister();
                 Logging.Info("BaseService.onHandleIntent.runCheck -> before making the meter null");
 
-                ///TODO Currently, the call does not make it here until after meter.listenForWakeUpString() is completed. That may be too long
                     meter = null;
 
                 Logging.Info("BaseService.onHandleIntent.runCheck -> Past making the meter null");

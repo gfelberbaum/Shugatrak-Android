@@ -67,6 +67,8 @@ public class TopLevelActivity extends Activity {
 
 	private DataSaver datas;
 
+	public static boolean isActive;
+
 	private static final String[] meterNames = { Ultra2.signatureA, Ultra2.signatureB, UltraMini.SIGNATURE,
 					FreeStyle.signatureA, FreeStyle.signatureB };
 
@@ -157,6 +159,23 @@ public class TopLevelActivity extends Activity {
 
 
 	}
+
+	public void onResume(){
+		super.onResume();
+
+		isActive=true;
+
+
+	}
+
+	public void onPause(){
+		super.onPause();
+		isActive=false;
+
+
+	}
+
+
 	/**
 	 * Makes a listener that will connect the A.Bar tabs, and the swipes
 	 */

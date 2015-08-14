@@ -42,10 +42,23 @@
 
 
     <!-- Build number must be set in: strings.xml, AndroidManifest, Debug.java -->
-    <string name="AboutInfo">www.shugatrak.com \n
-        Version: 1.3.6 \n
-        Build: 362 \n
-        \u00A9 2014 Applivate, LLC</string>
+    <string name="AboutInfo">Version: 1.3.7
+        \nBuild: 365
+
+        \n\n\nTips for the Reading Screen:
+        \nSwipe down for new readings
+        \nSwipe up to get all readings\n
+        \n\nwww.shugatrak.com
+        \nSounds provided by:
+        \nhttp://www.freesfx.co.uk \n
+        \u00A9 2015 Applivate, LLC</string>
+
+
+
+
+
+
+
     <string name="tos">ShugaTrak® Mobile App Terms of Service
 \n\n
 Date of Last Revision: August 10, 2013

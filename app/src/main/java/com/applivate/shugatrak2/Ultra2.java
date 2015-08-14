@@ -175,9 +175,12 @@ public class Ultra2 extends BaseMeter implements MeterInterface {
 				receivedData = "";
 				sendCommand(command);
 
+				/**
+				 * Taking out the  preprossing so that we do not have the user leave the screen early
+				**/
 				//If have a good amount of data
-			}else if(receivedData.length() > minLength){
-				process(receivedData);
+//			}else if(receivedData.length() > minLength){
+//				process(receivedData);
 			}
 		}//end while loop
 		Logging.Info("Ultra2.communicate with device", "ended the for loop");

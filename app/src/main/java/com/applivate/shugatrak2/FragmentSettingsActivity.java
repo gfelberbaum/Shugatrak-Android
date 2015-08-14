@@ -113,7 +113,7 @@ public class FragmentSettingsActivity extends Fragment {
         ((TextView) rootView.findViewById(R.id.stmtButton)).setEnabled(!data
                 .readSet(DataSaver.meterType).equals(DataSaver.NO_ITEM));
         if(!data.readSet(DataSaver.meterType).equals(DataSaver.NO_ITEM)){
-            ((Button)rootView.findViewById(R.id.cnmtButton)).setText("Change Meter");
+            ((Button)rootView.findViewById(R.id.cnmtButton)).setText("change meter");
         }
     }
 

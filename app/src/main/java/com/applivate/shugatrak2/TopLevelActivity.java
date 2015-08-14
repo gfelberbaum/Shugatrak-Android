@@ -250,7 +250,7 @@ public class TopLevelActivity extends Activity {
 
 		meterType.setText(datas.readSet(DataSaver.meterType));
 		if(!datas.readSet(DataSaver.meterType).equals(DataSaver.NO_ITEM)){
-			((Button) findViewById(R.id.cnmtButton)).setText("Change Meter");
+			((Button) findViewById(R.id.cnmtButton)).setText("change meter");
 		}
 	}
 
@@ -286,30 +286,36 @@ public class TopLevelActivity extends Activity {
 								((TextView) findViewById(R.id.stmtButton)).setClickable(true);
 								((TextView) findViewById(R.id.stmtButton)).setEnabled(true);
 
-								switch (which) {
-								case 0:
-									datas.addSet(DataSaver.meterType, Ultra2.signatureA);
+//								switch (which) {
+//								case 0:
+//									datas.addSet(DataSaver.meterType, Ultra2.signatureA);
+//
+//									break;
+//								case 1:
+//									datas.addSet(DataSaver.meterType, Ultra2.signatureB);
+//									break;
+//								case 2:
+//									datas.addSet(DataSaver.meterType, UltraMini.SIGNATURE);
+//									break;
+//								case 3:
+//									datas.addSet(DataSaver.meterType, FreeStyle.signatureA);
+//									break;
+//								case 4:
+//									datas.addSet(DataSaver.meterType, FreeStyle.signatureB);
+//									break;
+//
+//								default:
+//									break;
+//								}
 
-									break;
-								case 1:
-									datas.addSet(DataSaver.meterType, Ultra2.signatureB);
-									break;
-								case 2:
-									datas.addSet(DataSaver.meterType, UltraMini.SIGNATURE);
-									break;
-								case 3:
-									datas.addSet(DataSaver.meterType, FreeStyle.signatureA);
-									break;
-								case 4:
-									datas.addSet(DataSaver.meterType, FreeStyle.signatureB);
-									break;
-
-								default:
-									break;
-								}
+								datas.addSet(DataSaver.meterType, meterNames[which]);
 								updateMeter();
-								Toast.makeText(getApplicationContext(), R.string.press_adapter_button,
-												Toast.LENGTH_LONG).show();
+
+
+
+
+//								Toast.makeText(getApplicationContext(), R.string.press_adapter_button,
+//												Toast.LENGTH_LONG).show();
 							}
 						});
 		builder.create().show();
@@ -330,8 +336,24 @@ public class TopLevelActivity extends Activity {
 	public void setupMeter(View v) {
 		Intent broadcastIntent = new Intent(BleService.SEARCH_DISCONNECT);
 		sendBroadcast(broadcastIntent);
+
 		Intent intent = new Intent(this, SearchActivity.class);
 		startActivity(intent);
+
+		//TODO move the code written below
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder
+				.setTitle("set up adapter")
+				.setMessage("If your adapter has a button, push it now.")
+				.setPositiveButton("Ok", new OnClickListener() {
+
+					public void onClick(DialogInterface dialog, int which) {
+						datas.AcceptedToS(true);
+					}
+				});
+
+		builder.create().show();
+		//END TODO
 	}
 
 	/**

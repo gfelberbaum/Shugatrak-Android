@@ -340,20 +340,7 @@ public class TopLevelActivity extends Activity {
 		Intent intent = new Intent(this, SearchActivity.class);
 		startActivity(intent);
 
-		//TODO move the code written below
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder
-				.setTitle("set up adapter")
-				.setMessage("If your adapter has a button, push it now.")
-				.setPositiveButton("Ok", new OnClickListener() {
 
-					public void onClick(DialogInterface dialog, int which) {
-						datas.AcceptedToS(true);
-					}
-				});
-
-		builder.create().show();
-		//END TODO
 	}
 
 	/**

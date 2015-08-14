@@ -61,6 +61,7 @@ public class FragmentMeasurementActivity extends Fragment {
     private static ProgressBar loading;
     private static TextView editAdapterOn;
     private static Button retryUploadButton;
+    private static Context context;
 
 
     //These note the fingers' position on the screen
@@ -126,6 +127,7 @@ public class FragmentMeasurementActivity extends Fragment {
                 dataSaver.readSet(DataSaver.lastTime));
 
 
+        context = getActivity().getBaseContext();
         getActivity().registerReceiver(rec, filter());// set up the filter
 
     }
@@ -342,26 +344,41 @@ public class FragmentMeasurementActivity extends Fragment {
                     int diff = GLOBAL_TOUCH_POSITION_Y - GLOBAL_TOUCH_CURRENT_POSITION_Y;
                     Logging.Verbose("FragmentMeasurementActivity.handleTouch", "ACTION_MOVE   Diff " + diff + " current " + GLOBAL_TOUCH_CURRENT_POSITION_Y + " prev " + GLOBAL_TOUCH_POSITION_Y);
 
-                    if ((BleService.connected)&& !hasAlreadyActivated) {
+                    if ((BleService.connected || dataSaver.isKCadapter())&& !hasAlreadyActivated) {
                         if (diff < -600) {          //GET ONE READING
-                            hasAlreadyActivated = true;
+                                hasAlreadyActivated = true;
+                                Logging.Verbose("FragmentMeasurementActivity.handleTouch", "Should grab one readings");
 
-                            Intent intent = new Intent(getActivity().getApplicationContext(), BaseService.class);
-                            getActivity().startService(intent);
-                            Logging.Verbose("FragmentMeasurementActivity.handleTouch", "Should grab one readings");
+                            if(dataSaver.isKCadapter()){
+                                Intent intent = new Intent(BleService.getNewReadings);
+                                context.sendBroadcast(intent);
+
+
+                            }else {
+
+                                Intent intent = new Intent(getActivity().getApplicationContext(), BaseService.class);
+                                getActivity().startService(intent);
+                            }
                         } else if (diff > 600) {    //GET ALL READINGS
                             hasAlreadyActivated = true;
                             try {
+                                Logging.Verbose("FragmentMeasurementActivity.handleTouch", "should grab all reading");
                                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                                 builder.setMessage("").setTitle(R.string.get_all_meter_readings)
                                         .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 
                                             public void onClick(DialogInterface dialog, int which) {
                                                 dataSaver.removeMemoryOfReadings();
+                                                if(dataSaver.isKCadapter()){
+                                                    Intent intent = new Intent(BleService.getNewReadings);
+                                                    context.sendBroadcast(intent);
 
-                                                Intent intent = new Intent(getActivity().getApplicationContext(), BaseService.class);
-                                                getActivity().startService(intent);
-                                                Logging.Verbose("FragmentMeasurementActivity.handleTouch", "should grab all reading");
+
+                                                }else {
+
+                                                    Intent intent = new Intent(getActivity().getApplicationContext(), BaseService.class);
+                                                    getActivity().startService(intent);
+                                                }
 
                                             }
                                         });

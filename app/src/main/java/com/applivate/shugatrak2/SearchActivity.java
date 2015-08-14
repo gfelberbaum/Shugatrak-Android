@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothManager;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -82,6 +84,9 @@ public class SearchActivity extends ListActivity {
 			finish();
 		}
 
+
+
+
 	}
 
 	/**
@@ -146,6 +151,17 @@ public class SearchActivity extends ListActivity {
 		DA = new DeListAdapter();
 		setListAdapter(DA);
 		scanLeDevice(true);
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder
+				.setTitle("set up adapter")
+				.setMessage("If your adapter has a button, push it now.")
+				.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+
+					public void onClick(DialogInterface dialog, int which) {
+					}
+				});
+
+		builder.create().show();
 	}
 
 	/**

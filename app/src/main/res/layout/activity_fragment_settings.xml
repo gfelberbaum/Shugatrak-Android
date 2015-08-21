@@ -19,7 +19,7 @@
         android:layout_alignParentStart="false"
         android:layout_alignParentTop="true"
         android:layout_alignWithParentIfMissing="false"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="30dp"
         android:orientation="horizontal">
 
         <EditText
@@ -61,15 +61,72 @@
         </EditText>
     </RelativeLayout>
 
+
+    <Button
+        android:id="@+id/verifyButton"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/passwordContainer"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="sans-serif-thin"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="#11577b"
+        android:onClick="verify"
+        android:text="@string/verifyButtonDescription"
+        android:textColor="#ffffff"
+        android:textSize="18sp" />
+
+
+
+
+
+    <TextView
+        android:id="@+id/MeterType"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-thin"
+        android:layout_alignParentStart="true"
+        android:clickable="true"
+        android:onClick="changeTimeForKCAdapter"
+        android:layout_above="@+id/adapterSelected"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:layout_marginBottom="0dp"
+        android:paddingBottom="0dp"
+        android:textColor="#ffffff"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/adapterSelected"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/space_holder"
+        android:layout_marginTop="0dp"
+        android:paddingTop="0dp"
+        android:fontFamily="sans-serif-thin"
+        android:gravity="center"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <Space
+        android:id="@+id/space_holder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
+
     <Button
         android:id="@+id/cnmtButton"
         android:fontFamily="sans-serif-thin"
-        android:layout_width="240dp"
+        android:layout_width="150dp"
         android:layout_height="40dp"
-        android:layout_below="@+id/verifyButton"
+        android:layout_below="@+id/space_holder"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
-        android:layout_marginTop="85dp"
+        android:layout_marginTop="8dp"
         android:background="#11577b"
         android:onClick="cmnt"
         android:text="@string/changeButton"
@@ -78,7 +135,7 @@
 
     <Button
         android:id="@+id/stmtButton"
-        android:layout_width="240dp"
+        android:layout_width="150dp"
         android:layout_height="40dp"
         android:fontFamily="sans-serif-thin"
         android:layout_below="@+id/cnmtButton"
@@ -91,55 +148,15 @@
         android:textColor="#ffffff"
         android:textSize="18sp" />
 
-    <Button
-        android:id="@+id/verifyButton"
-        android:layout_width="240dp"
-        android:layout_height="40dp"
-        android:layout_below="@+id/passwordContainer"
-        android:layout_centerHorizontal="true"
-        android:fontFamily="sans-serif-thin"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:background="#11577b"
-        android:onClick="verify"
-        android:text="@string/verifyButtonDescription"
-        android:textColor="#ffffff"
-        android:textSize="18sp" />
 
-    <TextView
-        android:id="@+id/MeterType"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-thin"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/verifyButton"
-        android:clickable="true"
-        android:onClick="changeTimeForKCAdapter"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:textColor="#ffffff"
-        android:textSize="22sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/adapterSelected"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/MeterType"
-        android:layout_marginTop="8dp"
-        android:fontFamily="sans-serif-thin"
-        android:gravity="center"
-        android:textColor="#ffffff"
-        android:textSize="18sp"
-        android:textStyle="bold" />
 
     <Button
         android:id="@+id/AboutButton"
         android:fontFamily="sans-serif-thin"
-        android:layout_width="240dp"
+        android:layout_width="150dp"
         android:layout_height="40dp"
-        android:layout_below="@+id/stmtButton"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="40dp"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"

@@ -27,7 +27,7 @@
     <string name="transferring_readings">transferring readings</string>
     <string name="bluetooth_is_off">Bluetooth is off</string>
     <string name="goto_reading_screen">please go to the Reading screen</string>
-    <string name="AboutButtonDescription">about</string>
+    <string name="AboutButtonDescription">about shugatrak</string>
     <string name="Shuga">ShugaTrak</string>
     <string name="diagnostics_sent_to_shugatrak">diagnostics uploaded to Shugatrak.com</string>
     <string name="DiagnoseButtonDescription">Send Report</string>

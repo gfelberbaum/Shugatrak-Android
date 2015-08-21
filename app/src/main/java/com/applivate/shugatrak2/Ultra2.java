@@ -191,7 +191,7 @@ public class Ultra2 extends BaseMeter implements MeterInterface {
 		//////////////////////////////////
 
 		if(checkForReadings()){
-			InternetSyncing.errorDump="BAD CHECKSUM\n" + receivedData;
+			InternetSyncing.errorDump="BAD CHECKSUM::" + receivedData.replace("\n","");
 		}
 		
 		

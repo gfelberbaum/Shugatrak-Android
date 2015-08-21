@@ -207,8 +207,7 @@ public class InternetSyncing {
 				break;
 			}
 
-			// TODO: ASK JOHN WHAT HE WOULD LIKE TO DO ABOUT THESE EXTRA SITUATIONS.
-			errorPhrase = EN_GOOD_STRING;
+
 
 			Intent notificationIntent = new Intent(context, TopLevelActivity.class);
 			PendingIntent notificationPendingIntent = PendingIntent.getActivity(context, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);

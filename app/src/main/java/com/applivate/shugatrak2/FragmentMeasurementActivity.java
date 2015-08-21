@@ -352,6 +352,9 @@ public class FragmentMeasurementActivity extends Fragment {
                             if(dataSaver.isKCadapter()){
                                 Intent intent = new Intent(BleService.getNewReadings);
                                 context.sendBroadcast(intent);
+                                BleService.UIConnected=BleService.LISTENING_PHRASE;
+                                Intent updateIntent = new Intent(BaseService.UPDATES);
+                                context.sendBroadcast(updateIntent);
 
 
                             }else {
@@ -365,16 +368,21 @@ public class FragmentMeasurementActivity extends Fragment {
                                 Logging.Verbose("FragmentMeasurementActivity.handleTouch", "should grab all reading");
                                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                                 builder.setMessage("").setTitle(R.string.get_all_meter_readings)
-                                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                        //As negative button is the left button on the adapter, and John wants the positive response on the left button, the positive response has been set to the negative button
+                                        .setNegativeButton("Ok", new DialogInterface.OnClickListener() {
 
                                             public void onClick(DialogInterface dialog, int which) {
                                                 dataSaver.removeMemoryOfReadings();
-                                                if(dataSaver.isKCadapter()){
+                                                if (dataSaver.isKCadapter()) {
                                                     Intent intent = new Intent(BleService.getNewReadings);
                                                     context.sendBroadcast(intent);
 
+                                                    BleService.UIConnected = BleService.LISTENING_PHRASE;
+                                                    Intent updateIntent = new Intent(BaseService.UPDATES);
+                                                    context.sendBroadcast(updateIntent);
 
-                                                }else {
+
+                                                } else {
 
                                                     Intent intent = new Intent(getActivity().getApplicationContext(), BaseService.class);
                                                     getActivity().startService(intent);
@@ -382,7 +390,8 @@ public class FragmentMeasurementActivity extends Fragment {
 
                                             }
                                         });
-                                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                //As positive button is the right button on the adapter, and John wants the negative response on the right button, the negative response has been set to the positive button
+                                builder.setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
 
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {

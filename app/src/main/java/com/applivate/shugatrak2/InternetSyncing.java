@@ -15,11 +15,13 @@ import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.util.Log;
@@ -211,6 +213,9 @@ public class InternetSyncing {
 			Intent notificationIntent = new Intent(context, TopLevelActivity.class);
 			PendingIntent notificationPendingIntent = PendingIntent.getActivity(context, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
+			Uri soundUri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + context.getPackageName() + "/" + R.raw.failure_sound);
+
+
 			// Action Bar icon for the notification
 			Notification.Builder not = new Notification.Builder(context).setSmallIcon(R.drawable.notification_icon_1)
 							.setContentTitle("ShugaTrak") // Title for notification
@@ -218,7 +223,7 @@ public class InternetSyncing {
 							// .setStyle( new Notification.BigTextStyle().bigText(finalString))  //makes the drop down if there is more
 							.setAutoCancel(true)// gets rid of when clicked
 							.setContentIntent(notificationPendingIntent)// makes the place when you clicked, as specified above
-							// .setSound(soundUri)  //specify the sound to play here
+							 .setSound(soundUri)  //specify the sound to play here
 							.setTicker(errorPhrase)// what shows up quickly at the top of the not. bar
 							.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_launcher))  // makes the main icon, on the left
 			;

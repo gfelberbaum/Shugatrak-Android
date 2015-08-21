@@ -119,6 +119,8 @@ public class BleService extends Service {
     public static String NO_CONNECTION_PHRASE = "adapter is not set up";// R.string.adapter_not_set_up
     public static String REQUESTING_READINGS = "requesting readings";  //  R.string.requesting_readings
     public static String NOT_CONNECTED = "Bluetooth is off";  //  R.string.bluetooth_is_off
+    public static String LISTENING_PHRASE="listening for adapter";
+
 
 
     public final boolean isSamsung = (Build.MANUFACTURER.toLowerCase(Locale.ENGLISH).contains("samsung"));

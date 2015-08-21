@@ -76,7 +76,7 @@ public class SearchActivity extends ListActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		postRun = new PostRun();
 		super.onCreate(savedInstanceState);
-		// getActionBar().setTitle("Scanning for Devices");
+		 getActionBar().setTitle("Tap your adapter");
 		// getActionBar().setDisplayHomeAsUpEnabled(true);
 		timerHandler = new Handler();
 		BleA = ((BluetoothManager) getSystemService(BLUETOOTH_SERVICE)).getAdapter();

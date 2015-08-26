@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.applivate.shugatrak2"
-    android:versionCode="366"
-    android:versionName="1.3.8" >
+    android:versionCode="367"
+    android:versionName="1.3.9" >
     <!-- Build number must be set in: strings.xml, AndroidManifest, Debug.java -->
 
 

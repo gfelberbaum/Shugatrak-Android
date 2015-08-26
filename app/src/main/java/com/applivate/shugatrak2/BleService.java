@@ -126,7 +126,7 @@ public class BleService extends Service {
     public final boolean isSamsung = (Build.MANUFACTURER.toLowerCase(Locale.ENGLISH).contains("samsung"));
     public final boolean isHTC = (Build.MANUFACTURER.toLowerCase(Locale.ENGLISH).contains("htc"));
     public final boolean NEED_CLOSE_CONNECT = !isSamsung;//Moto TRUE, HTC TRUE, Samsung FALSE			//TODO
-    public final boolean AUTO_CONNECT = true;
+    public final boolean AUTO_CONNECT = isSamsung;//Moto TRUE, HTC TRUE, Samsung FALSE
     /**
      * To be used with the User Interface.
      * <p>This variable is a {@code String} that tells the user what
@@ -433,10 +433,12 @@ public class BleService extends Service {
                 broadcastUpdate(intentAction);
                 //TODO
                 Logging.Debug("BleService.onConnectionStateChange:  Manufacterer is " + Build.MANUFACTURER);
-                if (NEED_CLOSE_CONNECT &&!(new DataSaver(getApplicationContext())).isKCadapter()) {
+                if (NEED_CLOSE_CONNECT) {
                     Logging.Debug("BleService.onConnectionStateChange:  Issuing manual Reconnect");
                     close();
-                    connect(DeviceMacAddress);
+                    if (!(new DataSaver(getApplicationContext())).isKCadapter()){
+                        connect(DeviceMacAddress);
+                    }
                 }
 
             }

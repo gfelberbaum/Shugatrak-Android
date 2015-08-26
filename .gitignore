@@ -5,3 +5,5 @@
 .DS_Store
 /build
 /captures
+.idea/runConfigurations.xml
+app/app-release.apk

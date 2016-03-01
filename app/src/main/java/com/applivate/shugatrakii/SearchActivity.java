@@ -77,12 +77,14 @@ public class SearchActivity extends ListActivity {
 		postRun = new PostRun();
 		super.onCreate(savedInstanceState);
 		 getActionBar().setTitle("Tap your adapter");
+		searching = false;
 		// getActionBar().setDisplayHomeAsUpEnabled(true);
 		timerHandler = new Handler();
 		BleA = ((BluetoothManager) getSystemService(BLUETOOTH_SERVICE)).getAdapter();
 		if (BleA == null) {
 			finish();
 		}
+
 
 
 
@@ -107,7 +109,10 @@ public class SearchActivity extends ListActivity {
 			menu.findItem(R.id.loading).setVisible(false).setActionView(null);
 
 		}
+
 		return true;
+
+
 	}
 
 	/**
@@ -132,6 +137,7 @@ public class SearchActivity extends ListActivity {
 			// }
 		}
 
+
 		return super.onOptionsItemSelected(item);
 	}
 
@@ -140,6 +146,7 @@ public class SearchActivity extends ListActivity {
 	 */
 	public void onResume() {
 		super.onResume();
+
 
 		// If Bluetooth not enabled, enable it
 		if (!BleA.isEnabled()) {
@@ -160,14 +167,17 @@ public class SearchActivity extends ListActivity {
 					public void onClick(DialogInterface dialog, int which) {
 					}
 				});
-
 		builder.create().show();
+
+
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	protected void onActivityResult(int request, int result, Intent data) {
+
+
 		if (request == request_BT && result == Activity.RESULT_CANCELED) {
 			finish();
 			return;
@@ -179,6 +189,8 @@ public class SearchActivity extends ListActivity {
 	 * {@inheritDoc}
 	 */
 	protected void onPause() {
+
+
 		super.onPause();
 		scanLeDevice(false);
 		DA.clear();
@@ -217,7 +229,7 @@ public class SearchActivity extends ListActivity {
 		if (device.getName().toUpperCase().contains(ADAPTER_NEW_NAME)){
 			(new DataSaver(getApplicationContext())).addSet(DataSaver.NAME_OF_ADAPTER,device.getName());
 			(new DataSaver(getApplicationContext())).setIsKCAdapter(device.getName().split("-")[1].equals(ADAPTER_KC));
-			Logging.Info("the adapter is seen as a KC: " +device.getName().split("-")[1].equals(ADAPTER_KC));
+
 		}
 		startService(intent);
 		finish();
@@ -233,9 +245,13 @@ public class SearchActivity extends ListActivity {
 	 */
 	private class PostRun implements Runnable {
 		public void run() {
+
+
 			searching = false;
 			BleA.stopLeScan(CallBack);
 			invalidateOptionsMenu();
+
+
 
 		}
 	}
@@ -247,6 +263,8 @@ public class SearchActivity extends ListActivity {
 	 *            If true, will start scanning
 	 */
 	private void scanLeDevice(final boolean enable) {
+
+
 		if (enable) {
 			timerHandler.postDelayed(postRun, SCAN_SECONDS * BaseMeter.SECONDS);
 			DA.clear();
@@ -259,6 +277,7 @@ public class SearchActivity extends ListActivity {
 			timerHandler.removeCallbacks(postRun, null);
 			invalidateOptionsMenu();
 		}
+
 	}
 
 	/**
@@ -274,6 +293,8 @@ public class SearchActivity extends ListActivity {
 		 */
 		public DeListAdapter() {
 			super();
+
+
 			inf = SearchActivity.this.getLayoutInflater();
 			DL = new ArrayList<BluetoothDevice>();
 			RSSI = new ArrayList<Integer>();
@@ -284,6 +305,8 @@ public class SearchActivity extends ListActivity {
 		 */
 		@Override
 		public int getCount() {
+
+
 			return DL.size();
 		}
 
@@ -292,6 +315,8 @@ public class SearchActivity extends ListActivity {
 		 */
 		@Override
 		public Object getItem(int position) {
+
+
 			return DL.get(position);
 		}
 
@@ -300,10 +325,14 @@ public class SearchActivity extends ListActivity {
 		 */
 		@Override
 		public long getItemId(int position) {
+
+
 			return position;
 		}
 
 		public void addDevice(BluetoothDevice device, Integer rssi) {
+
+
 			if (!DL.contains(device)) {
 				DL.add(device);
 				RSSI.add(rssi);
@@ -314,14 +343,20 @@ public class SearchActivity extends ListActivity {
 		}
 
 		public BluetoothDevice getDevice(int position) {
+
+
 			return DL.get(position);
 		}
 
 		public int getRSSI(int position) {
+
+
 			return RSSI.get(position);
 		}
 
 		public void clear() {
+
+
 			DL.clear();
 			;
 		}
@@ -332,6 +367,7 @@ public class SearchActivity extends ListActivity {
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 			ViewHelper holder;
+
 			if (convertView == null) {// if no tag yet
 				convertView = inf.inflate(R.layout.activity_searching, null);
 				holder = new ViewHelper();
@@ -383,6 +419,11 @@ public class SearchActivity extends ListActivity {
 		 */
 		@Override
 		public void onLeScan(final BluetoothDevice device, final int rssi, byte[] scanRecord) {
+
+			if(device.getName()==null){
+				return;
+			}
+
 			if (device.getName().contains(ADAPTER_OLD_NAME_1)||device.getName().contains(ADAPTER_OLD_NAME_2)||device.getName().toUpperCase().contains(ADAPTER_NEW_NAME)) {
 
 				final Integer rs = rssi;
@@ -390,6 +431,8 @@ public class SearchActivity extends ListActivity {
 
 					@Override
 					public void run() {
+
+
 						DA.addDevice(device, rs);
 						DA.notifyDataSetChanged();
 

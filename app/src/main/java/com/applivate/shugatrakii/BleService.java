@@ -1,13 +1,11 @@
 
-package com.applivate.shugatrak2;
+package com.applivate.shugatrakii;
 
 
-import java.sql.Time;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
-import java.util.logging.Logger;
 
 
 import android.app.AlarmManager;
@@ -32,7 +30,6 @@ import android.graphics.BitmapFactory;
 import android.os.Binder;
 import android.os.Build;
 import android.os.IBinder;
-import android.provider.ContactsContract;
 
 /**
  * *************************************************************************
@@ -654,7 +651,7 @@ public class BleService extends Service {
     public void close() {
         Logging.Debug("BleService.close", "closing the method");
         if (BleG == null) return;
-        BleG.disconnect();
+//        BleG.disconnect();
         BleG.close();
         BleG = null;
         broadcastUpdate(A_DISCONNECTED);

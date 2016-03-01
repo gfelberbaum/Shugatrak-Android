@@ -1,10 +1,9 @@
-package com.applivate.shugatrak2;
+package com.applivate.shugatrakii;
 
 import android.bluetooth.BluetoothAdapter;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 
 /****************************************************************************
  * SYSTEM RECEIVER

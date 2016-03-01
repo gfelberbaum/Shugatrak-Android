@@ -1,8 +1,7 @@
-package com.applivate.shugatrak2;
+package com.applivate.shugatrakii;
 
 import android.app.Fragment;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;

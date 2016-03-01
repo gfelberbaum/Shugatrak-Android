@@ -1,18 +1,14 @@
-package com.applivate.shugatrak2;
+package com.applivate.shugatrakii;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
 import android.content.BroadcastReceiver;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.ServiceConnection;
 import android.os.Handler;
-import android.os.IBinder;
 import android.os.SystemClock;
-import android.widget.Toast;
 
 /**
  * *************************************************************************

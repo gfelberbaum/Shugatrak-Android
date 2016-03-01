@@ -1,4 +1,4 @@
-package com.applivate.shugatrak2;
+package com.applivate.shugatrakii;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +24,6 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
-import android.util.Log;
 
 /****************************************************************************
  * INTERNET SYNCING

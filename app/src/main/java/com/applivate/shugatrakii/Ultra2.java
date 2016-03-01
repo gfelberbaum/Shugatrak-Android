@@ -1,4 +1,4 @@
-package com.applivate.shugatrak2;
+package com.applivate.shugatrakii;
 
 
 import java.text.ParseException;
@@ -10,7 +10,6 @@ import java.util.Locale;
 
 import android.content.Context;
 import android.os.SystemClock;
-import android.util.Log;
 
 /****************************************************************************
  * ULTRA 2

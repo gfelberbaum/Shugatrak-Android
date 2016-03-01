@@ -1,4 +1,4 @@
-package com.applivate.shugatrak2;
+package com.applivate.shugatrakii;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

@@ -3,7 +3,7 @@
 //http://stackoverflow.com/questions/2256082/best-way-to-implement-client-server-database-architecture-in-an-android
 //http://android-developers.blogspot.com/2010/07/multithreading-for-performance.html
 //http://www.doubleencore.com/2013/12/bluetooth-smart-for-android/
-package com.applivate.shugatrak2;
+package com.applivate.shugatrakii;
 
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
@@ -12,9 +12,6 @@ import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.app.TimePickerDialog;
-import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothManager;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
@@ -22,15 +19,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v13.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.TimePicker;
-import android.widget.Toast;
-
-import java.util.Calendar;
 
 /****************************************************************************
  * TOP LEVEL ACTIVITY

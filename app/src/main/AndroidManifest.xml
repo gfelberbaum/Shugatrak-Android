@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.applivate.shugatrak2"
+    package="com.applivate.shugatrakii"
     android:versionCode="367"
     android:versionName="1.3.9" >
     <!-- Build number must be set in: strings.xml, AndroidManifest, Debug.java -->
@@ -20,12 +20,12 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/MyStyle"
-        android:name = "Shuga2">
+        android:name = "com.applivate.shugatrakii.Shuga2">
 
         <!-- android:logo="@drawable/ic_logo" -->
 
         <activity
-            android:name="com.applivate.shugatrak2.TopLevelActivity"
+            android:name="com.applivate.shugatrakii.TopLevelActivity"
             android:label="@string/app_name"
             android:screenOrientation="userPortrait"
             android:windowSoftInputMode="adjustNothing" >
@@ -36,25 +36,25 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.applivate.shugatrak2.FragmentMeasurementActivity"
+            android:name="com.applivate.shugatrakii.FragmentMeasurementActivity"
             android:label="@string/title_activity_fragment_measurement" >
         </activity>
         <activity
-            android:name="com.applivate.shugatrak2.FragmentSettingsActivity"
+            android:name="com.applivate.shugatrakii.FragmentSettingsActivity"
             android:label="@string/title_activity_fragment_settings"
             android:windowSoftInputMode="adjustNothing" >
         </activity>
         <activity
-            android:name="com.applivate.shugatrak2.FragmentWebActivity"
+            android:name="com.applivate.shugatrakii.FragmentWebActivity"
             android:label="@string/title_activity_fragment_levels" >
         </activity>
         <activity
-            android:name="com.applivate.shugatrak2.SearchActivity"
+            android:name="com.applivate.shugatrakii.SearchActivity"
             android:label="Search for a Device"
             android:screenOrientation="userPortrait" >
 
             <!--
-            android:parentActivityName="com.applivate.shugatrak2.TopLevelActivity"
+            android:parentActivityName="shugatrakiii.TopLevelActivity"
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.shugatrak.TopLevelActivity" >
@@ -62,7 +62,7 @@
             -->
         </activity>
 
-        <receiver android:name="com.applivate.shugatrak2.SystemReceiver" >
+        <receiver android:name="com.applivate.shugatrakii.SystemReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.bluetooth.adapter.action.STATE_CHANGED" />
@@ -72,12 +72,12 @@
         </receiver>
 
         <service
-            android:name="com.applivate.shugatrak2.BleService"
+            android:name="com.applivate.shugatrakii.BleService"
             android:enabled="true"
             android:exported="false" >
         </service>
         <service
-            android:name="com.applivate.shugatrak2.BaseService"
+            android:name="com.applivate.shugatrakii.BaseService"
             android:enabled="true" >
         </service>
     </application>

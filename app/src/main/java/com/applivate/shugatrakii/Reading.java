@@ -1,4 +1,4 @@
-package com.applivate.shugatrak2;
+package com.applivate.shugatrakii;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -7,7 +7,7 @@ import java.util.Locale;
 
 import android.os.Build;
 import android.text.format.Time;
-import android.util.Log;
+
 /****************************************************************************
  * READING
  * 

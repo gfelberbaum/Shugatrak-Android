@@ -1,5 +1,5 @@
 
-package com.applivate.shugatrak2;
+package com.applivate.shugatrakii;
 
 
 /****************************************************************************

@@ -1,5 +1,5 @@
 
-package com.applivate.shugatrak2;
+package com.applivate.shugatrakii;
 
 
 import java.util.ArrayList;
@@ -14,7 +14,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.BitmapFactory;
-import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.BatteryManager;

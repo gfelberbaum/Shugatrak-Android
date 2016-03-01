@@ -1,4 +1,4 @@
-package com.applivate.shugatrak2;
+package com.applivate.shugatrakii;
 
 import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
@@ -12,7 +12,7 @@ import java.util.TimerTask;
 import android.content.Context;
 import android.os.Handler;
 import android.os.SystemClock;
-import android.util.Log;
+
 /****************************************************************************
  * ULTRA MINI
  * 

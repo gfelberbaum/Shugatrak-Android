@@ -1,4 +1,4 @@
-package com.applivate.shugatrak2;
+package com.applivate.shugatrakii;
 
 public class Debug {
 	public static final boolean DEBUG = true;

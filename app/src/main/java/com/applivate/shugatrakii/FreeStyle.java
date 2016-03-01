@@ -1,4 +1,4 @@
-package com.applivate.shugatrak2;
+package com.applivate.shugatrakii;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

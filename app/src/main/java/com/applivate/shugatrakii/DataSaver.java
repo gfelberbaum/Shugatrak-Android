@@ -1,11 +1,10 @@
-package com.applivate.shugatrak2;
+package com.applivate.shugatrakii;
 
 import java.util.ArrayList;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.util.Log;
 
 
 /****************************************************************************

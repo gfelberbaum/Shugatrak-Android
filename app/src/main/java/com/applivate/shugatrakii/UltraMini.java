@@ -310,6 +310,7 @@ public class UltraMini extends BaseMeter implements MeterInterface{
 					update();
 				}
 				badGrabCount = 0;
+				numberOfRetries = 0;
 			}else if(!repeatData&&badGrabCount >2){
 				if(Debug.DEBUG)Logging.Info("UltraMini.communicate with device", "KickedByBadChecksum");
 				InternetSyncing.errorDump = "BAD CHECKSUM::";

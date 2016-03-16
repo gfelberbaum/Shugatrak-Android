@@ -197,7 +197,7 @@ public class FreeStyle extends BaseMeter implements MeterInterface {
 
             if (singleReadingProcessing(receivedData)) {
                 //DO PROCESSING HERE
-
+                numberOfResends=0;
                 if (readingToGrab++ == 1) {
                     update();
                 }

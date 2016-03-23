@@ -339,6 +339,7 @@ public class FragmentMeasurementActivity extends Fragment {
                     Logging.Verbose("FragmentMeasurementActivity.handleTouch", "ACTION_MOVE   Diff " + diff + " current " + GLOBAL_TOUCH_CURRENT_POSITION_Y + " prev " + GLOBAL_TOUCH_POSITION_Y);
 
                     if ((BleService.connected || dataSaver.isKCadapter())&& !hasAlreadyActivated) {
+                        Logging.Verbose("Connected: " +BleService.connected + "; isKC: " + dataSaver.isKCadapter() +"; HasAlreadyActivated: " +!hasAlreadyActivated);
                         if (diff < -600) {          //GET ONE READING
                                 hasAlreadyActivated = true;
                                 Logging.Verbose("FragmentMeasurementActivity.handleTouch", "Should grab one readings");

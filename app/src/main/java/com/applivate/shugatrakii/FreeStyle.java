@@ -63,7 +63,7 @@ public class FreeStyle extends BaseMeter implements MeterInterface {
      * Time that the program will Sleep, in seconds
      */
     private final int sleepTimeFullDump = 2;
-    private final double getSleepTimeSingleGrab = 1;
+    private final double getSleepTimeSingleGrab = .15;
 
     /**
      * Constructor
@@ -97,7 +97,7 @@ public class FreeStyle extends BaseMeter implements MeterInterface {
 //		sendCommand(CHECK_CONNECTION);
 
         if (alreadyHaveInfo) {
-            doSingleReadings();
+            doSingleReadings();//If we have information already, then do it individually, if we have no information (no reading saved) ask for them all
         } else {
             doFullDump();
         }
@@ -159,7 +159,7 @@ public class FreeStyle extends BaseMeter implements MeterInterface {
         Logging.Info("Freestyle.CommunicateWithDevice", "DoSingleReadings - START");
 
         try {
-            SystemClock.sleep((long) (.5 * SECONDS));
+            SystemClock.sleep((long) (.5 * SECONDS));// One time timer. Allow for system to flush the "meter off" message.
         } catch (Exception ex) {
             Logging.Error("Freestyle.doSingleReadings", "EXCEPTION: ", ex);
         }

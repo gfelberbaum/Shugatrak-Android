@@ -281,8 +281,12 @@ public class BaseService extends IntentService {
 
             // re-update to stop saying transfering readings
             Intent endReadings = new Intent(ENDING_READINGS);
-            sendBroadcast(endReadings);
+            if(BleService.connected) {
+                sendBroadcast(endReadings);
+            }else{
 
+                sendBroadcast(new Intent(BleService.A_DISCONNECTED));
+            }
 
             Logging.Info("BaseService.onHandleRequest:  Ended communication");
 

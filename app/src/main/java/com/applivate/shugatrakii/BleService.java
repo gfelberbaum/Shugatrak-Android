@@ -402,7 +402,7 @@ public class BleService extends Service {
                 close();
                 connect(DeviceMacAddress);
             }
-            if (status != 0){
+            if (status != 0 && status != 19){
                 close();
                 connect(DeviceMacAddress);
                 return;
@@ -652,6 +652,8 @@ public class BleService extends Service {
         Logging.Debug("BleService.close", "closing the method");
         if (BleG == null) return;
 //        BleG.disconnect();
+        connected = false;
+        isDisconnected = true;
         BleG.close();
         BleG = null;
         broadcastUpdate(A_DISCONNECTED);
